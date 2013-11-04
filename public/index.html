@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Lista de Web Services y entidades</h1>
+
+		<h2>Web Services</h2>
+
+		<table>
+			<tr>
+				<th>Método</th>
+				<th>Descripción</th>
+				<th>Tipo Petición</th>
+				<th>In</th>
+				<th>Out</th>
+			</tr>
+			<tr>
+				<td>/user/login</td>
+				<td>Método para iniciar sesión en la aplicación</td>
+				<td>POST</td>
+				<td>LoginRequest</td>
+				<td>LoginResponse</td>
+			</tr>
+			<tr>
+				<td>/user/register</td>
+				<td>Método para registrar un nuevo usuario</td>
+				<td>POST</td>
+				<td>RegisterRequest</td>
+				<td>LoginResponse</td>
+			</tr>
+			<tr>
+				<td>/user/registerfacebook</td>
+				<td>Método para registrar usuario con facebook</td>
+				<td>POST</td>
+				<td>RegisterFacebookRequest</td>
+				<td>LoginResponse</td>
+			</tr>
+			<tr>
+				<td>/feed/all</td>
+				<td>Método para traer todos los feeds de los amigos</td>
+				<td>POST</td>
+				<td>FeedRequest</td>
+				<td>FeedResponse</td>
+			</tr>
+		</table>
+
+		<h2>Entidades</h2>
+		<ol>
+			<li>
+				User
+					<ul>
+						<li>id: int</li>
+						<li>name: string</li>
+						<li>email: string</li>
+						<li>password: string</li>
+						<li>facebookId: string</li>
+						<li>imageUrl: string</li>
+					</ul>
+			</li>
+			<li>Quest</li>
+				<ul>
+					<li>id: int</li>
+					<li>latitude: double</li>
+					<li>longitude: double</li>
+					<li>name: string</li>
+					<li>address: string</li>
+					<li>hint: string</li>
+					<li>brief: text</li>
+					<li>difficulty: int</li>
+				</ul>
+			<li>
+				LoginRequest
+				<ul class="entidad">
+					<li>email: string - correo electrónico del usuario</li>
+					<li>password: string - contraseña con codificación MD5</li>
+				</ul>
+			</li>
+
+			<li>
+				Loginresponse
+				<ul>
+					<li>user: User - entidad de usuario</li>
+				</ul>
+			</li>
+
+			<li>
+				RegisterRequest
+				<ul>
+					<li>name: string - nombre completo del usuario</li>
+					<li>email: string - correo electrónico del usuario</li>
+					<li>password: string - contraseña con codificación MD5</li>
+				</ul>
+			</li>
+			<li>
+				RegisterFacebookRequest
+				<ul>
+					<li>name: string - nombre completo del usuario</li>
+					<li>email: string - correo electrónico del usuario</li>
+					<li>password: string - contraseña con codificación MD5</li>
+				</ul>
+			</li>
+			<li>
+				FeedRequest
+				<ul>
+					<li>userId: int - id del usuario que realiza la petición</li>
+					<li>feedUserid: int - id del usuario a consultar (null si es all)</li>
+				</ul>
+			</li>
+			<li>
+				FeedResponse
+				<ul>
+					<li>feedList: Array<FeedEntity> - listado de feeds</li>
+				</ul>
+			</li>
+			<li>
+				FeedEntity
+					<ul>
+						<li>userId: int - id del usuario a quien pertenece el feed</li>
+						<li>userName: string - nombre del usuario del feed</li>
+						<li>userPictureUrl: string - url de la imagen del usuario</li>
+						<li>dateFeed: string - fecha de cuando fué ganado (fecha epoch)</li>
+						<li>questName: string - nombre del quest</li>
+						<li>questId: int - identificador del quest</li>
+					</ul>
+			</li>
+		</ol>
+	</body>
+</html>
