@@ -1,15 +1,12 @@
-require 'login_request'
-require 'login_response'
 class UserController < ApplicationController
   def login
 		if request.post?
-			lr = LoginRequest.new(JSON.parse params[:LoginRequest])
-			user = User.find_by_email(lr.email)
-			response = nil
-			if user and user.password == lr.password
-				response = LoginResponse.new(user)
+			user = User.find_by_email(params[:email])
+			if user and user.password == params[:password]
+				render json: user
+			else
+				render json: nil
 			end
-			render json: response
 		end
   end
 
