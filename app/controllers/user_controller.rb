@@ -3,7 +3,7 @@ class UserController < ApplicationController
 		if request.post?
 			user = User.find_by_email(params[:email])
 			if user and user.password == params[:password]
-				render json: user
+				render json: user, root: true
 			else
 				render json: nil
 			end
