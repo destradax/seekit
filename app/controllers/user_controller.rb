@@ -5,7 +5,7 @@ class UserController < ApplicationController
 			if user and user.password == params[:password]
 				render json: user, root: true
 			else
-				render json: nil, status: 400
+				render json: {error: "email / password incorrect"}
 			end
 		end
   end
