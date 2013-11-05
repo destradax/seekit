@@ -11,6 +11,17 @@ class UserController < ApplicationController
   end
 
   def register
+		if request.post?
+			user = User.new
+			user.name = params[:name]
+			user.email = params[:email]
+			user.password = params[:password]
+			if user.save
+				render json: user, root: true
+			else
+				render json: {error: "could not register user"}
+			end
+		end
   end
 
   def registerfacebook
