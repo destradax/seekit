@@ -7,5 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.delete_all
-User.create(name: "Homer Simpson", email: "homer@gmail.com", password: Digest::MD5.hexdigest("homer"))
-User.create(name: "Peter Griffin", email: "peter@gmail.com", password: "peter")
+User.create(name: "Homer Simpson", email: "homer@gmail.com", password: Digest::MD5.hexdigest("homer"), exp: 0)
+User.create(name: "Peter Griffin", email: "peter@gmail.com", password: "peter", exp: 0)

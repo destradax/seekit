@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107022949) do
+ActiveRecord::Schema.define(version: 20131107032327) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131107022949) do
     t.string   "imageURL"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "exp"
   end
 
 end

@@ -16,6 +16,7 @@ class UserController < ApplicationController
 			user.name = params[:name]
 			user.email = params[:email]
 			user.password = params[:password]
+			user.exp = 0
 			if user.save
 				render json: user, root: true
 			else
