@@ -5,6 +5,7 @@ Seekit::Application.routes.draw do
   post "user/login"
   post "user/register"
   post "user/registerfacebook"
+	post "user/add_friend"
   
 	# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
