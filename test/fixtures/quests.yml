@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  latitude: 9.99
+  longitude: 9.99
+  name: MyString
+  address: MyString
+  hint: MyString
+  brief: MyText
+  difficulty: 1
+
+two:
+  latitude: 9.99
+  longitude: 9.99
+  name: MyString
+  address: MyString
+  hint: MyString
+  brief: MyText
+  difficulty: 1

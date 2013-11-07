@@ -11,11 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107032327) do
+ActiveRecord::Schema.define(version: 20131107050132) do
 
   create_table "friendships", id: false, force: true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quests", force: true do |t|
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "name"
+    t.string   "address"
+    t.string   "hint"
+    t.text     "brief"
+    t.integer  "difficulty"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
