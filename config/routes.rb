@@ -1,7 +1,4 @@
 Seekit::Application.routes.draw do
-  get "user/login"
-  get "user/register"
-  get "user/registerfacebook"
   post "user/login"
   post "user/register"
   post "user/registerfacebook"
