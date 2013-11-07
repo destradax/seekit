@@ -22,8 +22,20 @@ class FriendsController < ApplicationController
 	end
 
 	def get
+		if request.post?
+			friends = Friendship.where(user_id: params[:user_id])
+			render json: friends
+		end
 	end
 
 	def remove
+		if request.post?
+			friendship = Friendship.where(user_id: params[:user_id], friend_id: params[:friend_id]).first
+			unless friendship
+				render json: {error: "You are not friends"} and return
+			end
+			friendship.destroy
+			render json: {msg: "Friend deleted"}
+		end
 	end
 end
