@@ -7,4 +7,5 @@
 # 	* brief: text - a brief text about the place this quest points to, that will be shown once the user completes the quest
 # 	* difficulty: integer - the difficulty of this quest
 class Quest < ActiveRecord::Base
+	has_many :images
 end

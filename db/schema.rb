@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131108024634) do
+ActiveRecord::Schema.define(version: 20131108045115) do
 
   create_table "completed_quests", id: false, force: true do |t|
     t.integer  "user_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20131108024634) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "images", force: true do |t|
+    t.integer  "quest_id"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "images", ["quest_id"], name: "index_images_on_quest_id"
 
   create_table "quests", force: true do |t|
     t.decimal  "latitude"
