@@ -44,4 +44,9 @@ class QuestsController < ApplicationController
 			render json: {error: "could not complete quest"}
 		end
 	end
+
+	# Gets all the quests
+	def get_all
+		render json: Quest.all
+	end
 end
