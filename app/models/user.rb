@@ -10,5 +10,7 @@ class User < ActiveRecord::Base
 	validates_uniqueness_of :email, :message => "must be unique"
 	has_many :friendships
 	has_many :friends, through: :friendships
+	has_many :completed_quests
+	has_many :quests, through: :completed_quests
 	
 end

@@ -35,6 +35,8 @@ class FriendsController < ApplicationController
 	# 	* friends: Array of User - the friends of the user
 	def get
 		if request.post?
+			# TODO get the actual users, not only their id's
+			# TODO don't return the passwords of the users
 			friends = Friendship.where(user_id: params[:user_id])
 			render json: friends
 		end
