@@ -70,6 +70,8 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-get_all">#get_all</a>
+    
     <li><a href="#method-i-get_completed">#get_completed</a>
     
     <li><a href="#method-i-seekit">#seekit</a>
@@ -106,6 +108,8 @@
     <li><a href="./FriendsHelper.html">FriendsHelper</a>
   
     <li><a href="./Friendship.html">Friendship</a>
+  
+    <li><a href="./Image.html">Image</a>
   
     <li><a href="./Quest.html">Quest</a>
   
@@ -148,6 +152,41 @@
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-get_all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_all</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets all the quests</p>
+<dl class="rdoc-list label-list"><dt>Output
+<dd><ul><li>
+<p>quests: Array of <a href="Quest.html">Quest</a> - all the quests</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="get_all-source">
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_all</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Quest</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_all-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_all-method -->
 
     
       <div id="method-i-get_completed" class="method-detail ">

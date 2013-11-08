@@ -46,6 +46,8 @@ class QuestsController < ApplicationController
 	end
 
 	# Gets all the quests
+	# [Output]
+	# 	* quests: Array of Quest - all the quests
 	def get_all
 		render json: Quest.all
 	end
