@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class UserController - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/user_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-login">#login</a>
+    
+    <li><a href="#method-i-register">#register</a>
+    
+    <li><a href="#method-i-registerfacebook">#registerfacebook</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./FriendsController.html">FriendsController</a>
+  
+    <li><a href="./FriendsHelper.html">FriendsHelper</a>
+  
+    <li><a href="./Friendship.html">Friendship</a>
+  
+    <li><a href="./LoginRequest.html">LoginRequest</a>
+  
+    <li><a href="./LoginResponse.html">LoginResponse</a>
+  
+    <li><a href="./Quest.html">Quest</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UserController.html">UserController</a>
+  
+    <li><a href="./UserHelper.html">UserHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class UserController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">login</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs the user in</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>email: string - the email address of the user trying to log in</p>
+</li><li>
+<p>password: string - the password of the user trying to log in</p>
+</li></ul>
+</dd><dt>Output
+<dd><ul><li>
+<p>user: <a href="User.html">User</a> - the user that has successfully logged
+in</p>
+</li><li>
+<p>error: string - in case the user can&#39;t log in</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="login-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+                      <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>])
+                      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">password</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>]
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">root</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+                      <span class="ruby-keyword">else</span>
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;email / password incorrect&quot;</span>}
+                      <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- login-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- login-method -->
+
+    
+      <div id="method-i-register" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Registers a new user</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>name: string - the name of the new user</p>
+</li><li>
+<p>email: string - the email address of the new user</p>
+</li><li>
+<p>password: string - the password of the new user</p>
+</li></ul>
+</dd><dt>Output
+<dd><ul><li>
+<p>user: <a href="User.html">User</a> - the new user</p>
+</li><li>
+<p>error: string - in case the user can&#39;t register</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="register-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">register</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+                      <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+                      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+                      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
+                      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>]
+                      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">exp</span> = <span class="ruby-value">0</span>
+                      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">root</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+                      <span class="ruby-keyword">else</span>
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;could not register user&quot;</span>}
+                      <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- register-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- register-method -->
+
+    
+      <div id="method-i-registerfacebook" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">registerfacebook</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Not implemented yet</p>
+          
+
+          
+          <div class="method-source-code" id="registerfacebook-source">
+            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">registerfacebook</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- registerfacebook-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- registerfacebook-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

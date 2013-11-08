@@ -1,4 +1,11 @@
 class UserController < ApplicationController
+	# Logs the user in
+	# [Input]
+	# 	* email: string - the email address of the user trying to log in
+	# 	* password: string - the password of the user trying to log in
+	# [Output]
+	# 	* user: User - the user that has successfully logged in
+	# 	* error: string - in case the user can't log in
   def login
 		if request.post?
 			user = User.find_by_email(params[:email])
@@ -10,6 +17,15 @@ class UserController < ApplicationController
 		end
   end
 
+	# Registers a new user
+	# [Input]
+	# 	* name: string - the name of the new user
+	# 	* email: string - the email address of the new user
+	# 	* password: string - the password of the new user
+	#
+	# [Output]
+	# 	* user: User - the new user
+	# 	* error: string - in case the user can't register
   def register
 		if request.post?
 			user = User.new
@@ -25,6 +41,7 @@ class UserController < ApplicationController
 		end
   end
 
+	# Not implemented yet
   def registerfacebook
   end
 
