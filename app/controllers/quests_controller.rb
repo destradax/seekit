@@ -103,8 +103,8 @@ class QuestsController < ApplicationController
 	# 	* address: string - the address of the place this quest points to
 	# 	* hint: string - a hint to help users find this place
 	# 	* brief: text - a brief text about the place this quest points to, that will be shown once the user completes the quest
-# 	* difficulty: integer - the difficulty of this quest
-	#	[Output]
+	# 	* difficulty: integer - the difficulty of this quest
+	# [Output]
 	#		* quest: Quest - the new quest
 	def add
 		quest = Quest.new
