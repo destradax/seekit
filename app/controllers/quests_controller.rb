@@ -11,7 +11,7 @@ class QuestsController < ApplicationController
 		unless user
 			render json: {error: "user not found"} and return
 		end
-		render json: user.quests.to_json(include: :images)
+		render json: {quests: user.quests.as_json(include: :images)}
 	end
 
 	# Tries to complete a quest
