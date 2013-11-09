@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-get_completed">#get_completed</a>
     
+    <li><a href="#method-i-search">#search</a>
+    
     <li><a href="#method-i-seekit">#seekit</a>
     
   </ul>
@@ -178,10 +180,9 @@ the images of the quest</p>
 
           
           <div class="method-source-code" id="get_all-source">
-            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_all</span>
-        <span class="ruby-comment"># TODO return the array inside of an object</span>
-        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Quest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">include</span><span class="ruby-operator">:</span> <span class="ruby-value">:images</span>)
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;{\&quot;quests\&quot;: #{Quest.all.to_json(include: :images)}}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get_all-source -->
           
@@ -242,6 +243,68 @@ the images of the quest</p>
       </div><!-- get_completed-method -->
 
     
+      <div id="method-i-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets quests in range from the user</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>user_id: integer - the id of the current user</p>
+</li><li>
+<p>latitude: decimal - the latitude of the position of the user</p>
+</li><li>
+<p>longitude: decimal - the longitude of the position of the user</p>
+</li><li>
+<p>range: integer - the range in Km that the user wants to search</p>
+</li></ul>
+</dd><dt>Output
+<dd></dd></dl>
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
+        <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;user not found&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">quests</span> = []
+        <span class="ruby-identifier">ulat</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:latitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">ulat</span> = <span class="ruby-identifier">ulat</span>.<span class="ruby-identifier">to_d</span>
+        <span class="ruby-identifier">ulon</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:longitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">ulon</span> = <span class="ruby-identifier">ulon</span>.<span class="ruby-identifier">to_d</span>
+        <span class="ruby-identifier">range</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:range</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">range</span> = <span class="ruby-identifier">range</span>.<span class="ruby-identifier">to_i</span>
+
+        <span class="ruby-constant">Quest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">quest</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">users</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">user</span>)
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>, <span class="ruby-identifier">ulon</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">range</span>
+                                <span class="ruby-identifier">quests</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">quest</span>)
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;{\&quot;quests\&quot;: #{quests.to_json(include: :images)}}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- search-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- search-method -->
+
+    
       <div id="method-i-seekit" class="method-detail ">
         
         <div class="method-heading">
@@ -291,8 +354,6 @@ the images of the quest</p>
         
         <span class="ruby-identifier">ulat</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:latitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
         <span class="ruby-identifier">ulon</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:longitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
-        <span class="ruby-identifier">distance</span> = <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>.<span class="ruby-identifier">to_d</span>, <span class="ruby-identifier">ulon</span>.<span class="ruby-identifier">to_d</span>)
-        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;DISTANCE: &quot;</span>, <span class="ruby-identifier">distance</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>.<span class="ruby-identifier">to_d</span>, <span class="ruby-identifier">ulon</span>.<span class="ruby-identifier">to_d</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.03</span>
                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You are not there yet&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
         <span class="ruby-keyword">end</span>

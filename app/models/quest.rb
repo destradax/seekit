@@ -8,8 +8,14 @@
 # 	* difficulty: integer - the difficulty of this quest
 class Quest < ActiveRecord::Base
 	has_many :images
+	has_many :completed_quests
+	has_many :users, through: :completed_quests
+
+	# Returns the distance in Km to a given point 
+	# [Input]
+	# 	* ulat: decimal - the latitude coordinate of the point
+	# 	* ulon: decimal - the longitude coordinate of the point
 	def get_distance_to_point(ulat, ulon)
-		
 		# RAD_PER_DEG = Math::PI / 180
 		rad_per_deg = 0.017453292519943295
 		earth_radius = 6371 # in Km

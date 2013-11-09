@@ -10,6 +10,7 @@ Seekit::Application.routes.draw do
 	post "quests/get_completed"
 	post "quests/seekit"
 	post "quests/get_all"
+	post "quests/search"
   
 	# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

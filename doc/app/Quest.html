@@ -179,14 +179,20 @@ be shown once the user completes the quest</p>
 
         <div class="method-description">
           
-          
+          <p>Returns the distance in Km to a given point</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>ulat: decimal - the latitude coordinate of the point</p>
+</li><li>
+<p>ulon: decimal - the longitude coordinate of the point</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="get_distance_to_point-source">
-            <pre><span class="ruby-comment"># File app/models/quest.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/quest.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>, <span class="ruby-identifier">ulon</span>)
-        
         <span class="ruby-comment"># RAD_PER_DEG = Math::PI / 180</span>
         <span class="ruby-identifier">rad_per_deg</span> = <span class="ruby-value">0.017453292519943295</span>
         <span class="ruby-identifier">earth_radius</span> = <span class="ruby-value">6371</span> <span class="ruby-comment"># in Km</span>
