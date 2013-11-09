@@ -40,7 +40,7 @@ class FriendsController < ApplicationController
 				render json: {error: "user not fonud"}
 			end
 			
-			render json: user.friends.each {|f| f.password = nil}
+			render json: {friends: user.friends.each {|f| f.password = nil}}
 		end
 	end
 
