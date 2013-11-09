@@ -10,7 +10,7 @@ class QuestsController < ApplicationController
 		unless user
 			render json: {error: "user not found"} and return
 		end
-		render json: user.quests
+		render json: user.quests.to_json(include: :images)
 	end
 
 	# Tries to complete a quest
@@ -49,6 +49,6 @@ class QuestsController < ApplicationController
 	# [Output]
 	# 	* quests: Array of Quest - all the quests
 	def get_all
-		render json: Quest.all
+		render json: Quest.all.to_json(include: :images)
 	end
 end
