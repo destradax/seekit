@@ -46,6 +46,8 @@ class QuestsController < ApplicationController
 		cq.user = user
 		cq.quest = quest
 		if cq.save
+			user.exp += quest.difficulty * 10
+			user.save
 			render json: {msg: "quest completed"} and return 
 		else
 			render json: {error: "could not complete quest"} and return
@@ -91,5 +93,36 @@ class QuestsController < ApplicationController
 			end
 		end
 		render json: {quests: quests.as_json(include: :images)}
+	end
+
+	# Adds a new quest
+	# [Input]
+	# 	* latitude: decimal - the latitude coordinate of the quest
+	# 	* longitude: decimal - the longitude coordinate of the quest
+	# 	* name: string - the name of the place this quest points to
+	# 	* address: string - the address of the place this quest points to
+	# 	* hint: string - a hint to help users find this place
+	# 	* brief: text - a brief text about the place this quest points to, that will be shown once the user completes the quest
+# 	* difficulty: integer - the difficulty of this quest
+	#	[Output]
+	#		* quest: Quest - the new quest
+	def add
+		quest = Quest.new
+		quest.name = params[:name]
+		quest.address = params[:address]
+		quest.hint = params[:hint]
+		quest.brief = params[:brief]
+		quest.latitude = params[:latitude] || 0
+		quest.latitude = quest.latitude.to_d
+		quest.longitude = params[:longitude] || 0
+		quest.longitude = quest.longitude.to_d
+		quest.difficulty = params[:difficulty] || 0
+		quest.difficulty = quest.difficulty.to_i	
+		
+		if quest.save
+			render json: quest, root: true
+		else
+			render json: {error: "could not add quest"}
+		end
 	end
 end
