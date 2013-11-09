@@ -64,7 +64,17 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-get_distance_to_point">#get_distance_to_point</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -154,6 +164,66 @@ be shown once the user completes the quest</p>
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-get_distance_to_point" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_distance_to_point</span><span
+            class="method-args">(ulat, ulon)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_distance_to_point-source">
+            <pre><span class="ruby-comment"># File app/models/quest.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>, <span class="ruby-identifier">ulon</span>)
+        
+        <span class="ruby-comment"># RAD_PER_DEG = Math::PI / 180</span>
+        <span class="ruby-identifier">rad_per_deg</span> = <span class="ruby-value">0.017453292519943295</span>
+        <span class="ruby-identifier">earth_radius</span> = <span class="ruby-value">6371</span> <span class="ruby-comment"># in Km</span>
+
+        <span class="ruby-identifier">qlat</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">latitude</span>
+        <span class="ruby-identifier">qlon</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">longitude</span>
+
+        <span class="ruby-identifier">dlat</span> = <span class="ruby-identifier">ulat</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">qlat</span>
+        <span class="ruby-identifier">dlon</span> = <span class="ruby-identifier">ulon</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">qlon</span>
+
+        <span class="ruby-identifier">dlon_rad</span> = <span class="ruby-identifier">dlon</span> * <span class="ruby-identifier">rad_per_deg</span> 
+        <span class="ruby-identifier">dlat_rad</span> = <span class="ruby-identifier">dlat</span> * <span class="ruby-identifier">rad_per_deg</span>
+
+        <span class="ruby-identifier">ulat_rad</span> = <span class="ruby-identifier">ulat</span> * <span class="ruby-identifier">rad_per_deg</span>
+        <span class="ruby-identifier">ulon_rad</span> = <span class="ruby-identifier">ulon</span> * <span class="ruby-identifier">rad_per_deg</span>
+
+        <span class="ruby-identifier">qlat_rad</span> = <span class="ruby-identifier">qlat</span> * <span class="ruby-identifier">rad_per_deg</span>
+        <span class="ruby-identifier">qlon_rad</span> = <span class="ruby-identifier">qlon</span> * <span class="ruby-identifier">rad_per_deg</span>
+
+
+        <span class="ruby-identifier">a</span> = (<span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">dlat_rad</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>))<span class="ruby-operator">**</span><span class="ruby-value">2</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">ulat_rad</span>) * <span class="ruby-constant">Math</span>.<span class="ruby-identifier">cos</span>(<span class="ruby-identifier">qlat_rad</span>) * (<span class="ruby-constant">Math</span>.<span class="ruby-identifier">sin</span>(<span class="ruby-identifier">dlon_rad</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>))<span class="ruby-operator">**</span><span class="ruby-value">2</span>
+        <span class="ruby-identifier">c</span> = <span class="ruby-value">2</span> * <span class="ruby-constant">Math</span>.<span class="ruby-identifier">atan2</span>( <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-identifier">a</span>), <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-value">1</span><span class="ruby-operator">-</span><span class="ruby-identifier">a</span>))
+
+        <span class="ruby-identifier">dKm</span> = <span class="ruby-identifier">earth_radius</span> * <span class="ruby-identifier">c</span> <span class="ruby-comment"># delta in kilometers</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_distance_to_point-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_distance_to_point-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

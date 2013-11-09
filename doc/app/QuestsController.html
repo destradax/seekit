@@ -168,7 +168,7 @@
           <p>Gets all the quests</p>
 <dl class="rdoc-list label-list"><dt>Output
 <dd><ul><li>
-<p>quests: Array of <a href="Quest.html">Quest</a> - all the quests.</p>
+<p>quests: Array of <a href="Quest.html">Quest</a> - all the quests</p>
 </li><li>
 <p>Each quest includes images: Array of <a href="Image.html">Image</a> - all
 the images of the quest</p>
@@ -178,8 +178,9 @@ the images of the quest</p>
 
           
           <div class="method-source-code" id="get_all-source">
-            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_all</span>
+        <span class="ruby-comment"># TODO return the array inside of an object</span>
         <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Quest</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">to_json</span>(<span class="ruby-identifier">include</span><span class="ruby-operator">:</span> <span class="ruby-value">:images</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get_all-source -->
@@ -258,6 +259,10 @@ the images of the quest</p>
 <p>user_id: integer - the id of the current user</p>
 </li><li>
 <p>quest_id: integer - the id of the quest the user is trying to compelte</p>
+</li><li>
+<p>latitude: decimal - the latitude of the position of the user</p>
+</li><li>
+<p>longitude: decimal - the longitude of the position of the user</p>
 </li></ul>
 </dd><dt>Output
 <dd><ul><li>
@@ -270,7 +275,7 @@ the images of the quest</p>
 
           
           <div class="method-source-code" id="seekit-source">
-            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">seekit</span>
         <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
@@ -281,18 +286,24 @@ the images of the quest</p>
                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;quest not found&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
         <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">if</span> <span class="ruby-constant">CompletedQuest</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">quest_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">id</span>)
-                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;user already completed this quest&quot;</span>}
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;user already completed this quest&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
         <span class="ruby-keyword">end</span>
         
-        <span class="ruby-comment"># TODO check for the distance between the user and the quest</span>
+        <span class="ruby-identifier">ulat</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:latitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">ulon</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:longitude</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">distance</span> = <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>.<span class="ruby-identifier">to_d</span>, <span class="ruby-identifier">ulon</span>.<span class="ruby-identifier">to_d</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;DISTANCE: &quot;</span>, <span class="ruby-identifier">distance</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>.<span class="ruby-identifier">to_d</span>, <span class="ruby-identifier">ulon</span>.<span class="ruby-identifier">to_d</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">0.03</span>
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;You are not there yet&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+        <span class="ruby-keyword">end</span>
 
         <span class="ruby-identifier">cq</span> = <span class="ruby-constant">CompletedQuest</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-identifier">cq</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">user</span>
         <span class="ruby-identifier">cq</span>.<span class="ruby-identifier">quest</span> = <span class="ruby-identifier">quest</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">cq</span>.<span class="ruby-identifier">save</span>
-                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">msg</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;quest completed&quot;</span>}
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">msg</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;quest completed&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span> 
         <span class="ruby-keyword">else</span>
-                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;could not complete quest&quot;</span>}
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;could not complete quest&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- seekit-source -->
