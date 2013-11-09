@@ -4,6 +4,7 @@ class QuestsController < ApplicationController
 	# 	* user_id: integer - the id of the current user
 	# [Output]
 	# 	* quests: Array of Quest - the quests completed by the user
+	# 	* Each quest includes images: Array of Image - all the images of the quest
 	# 	* error: string - in case the user is not found
 	def get_completed
 		user = User.find_by_id(params[:user_id])
@@ -48,6 +49,7 @@ class QuestsController < ApplicationController
 	# Gets all the quests
 	# [Output]
 	# 	* quests: Array of Quest - all the quests
+	# 	* Each quest includes images: Array of Image - all the images of the quest
 	def get_all
 		render json: Quest.all.to_json(include: :images)
 	end
