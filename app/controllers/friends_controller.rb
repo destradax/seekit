@@ -76,7 +76,7 @@ class FriendsController < ApplicationController
 		unless user
 			render json: {error: "user not fonud"} and return
 		end
-		cq = CompletedQuest.where(user_id: user.friends.ids).order(created_at: :desc).limit(5)
+		cq = CompletedQuest.where(user_id: user.friends.ids).order(created_at: :desc).limit(10)
 		feeds = []
 		cq.each do |q|
 			hash = {}
