@@ -39,6 +39,7 @@ Quest.create(latitude: 5.936583, longitude: -72.875016, name: "Universidad Nacio
 Quest.create(latitude: 6.265635, longitude: -75.574016, name: "Universidad De Antioquia", hint: "known as 'la udea'", brief: "A big green university", difficulty: 3)
 Quest.create(latitude: 6.265635, longitude: -75.574016, name: "Simpsons Home", hint: "742 Evergreen Terrace", brief: "The house of the yellow family", difficulty: 4)
 Quest.create(latitude: 6.265635, longitude: -75.574016, name: "Griffin Home", hint: "Is in Quahog", brief: "This is where the Griffin family lives", difficulty: 1)
+Quest.create(latitude: 6.169263, longitude: -75.423567, name: "Jose Maria Cordoba Airport", hint: "In Rionegro", brief: "This is an airport", difficulty: 2)
 
 Image.delete_all
 Image.create(quest_id: Quest.first.id, url: "http://placekitten.com/200/300")
