@@ -59,7 +59,6 @@ class QuestsController < ApplicationController
 	# 	* quests: Array of Quest - all the quests
 	# 	* Each quest includes images: Array of Image - all the images of the quest
 	def get_all
-		# TODO return the array inside of an object
-		render json: Quest.all.to_json(include: :images)
+		render json: "{\"quests\": #{Quest.all.to_json(include: :images)}}"
 	end
 end
