@@ -57,7 +57,7 @@ class QuestsController < ApplicationController
 	# 	* quests: Array of Quest - all the quests
 	# 	* Each quest includes images: Array of Image - all the images of the quest
 	def get_all
-		render json: "{\"quests\": #{Quest.all.to_json(include: :images)}}"
+		render json: {quests: Quest.all.as_json(include: :images)}
 	end
 
 	# Gets quests in range from the user
@@ -90,6 +90,6 @@ class QuestsController < ApplicationController
 				end
 			end
 		end
-		render json: "{\"quests\": #{quests.to_json(include: :images)}}"
+		render json: {quests: quests.as_json(include: :images)}
 	end
 end
