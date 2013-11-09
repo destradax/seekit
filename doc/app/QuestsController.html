@@ -266,12 +266,19 @@ the images of the quest</p>
 <p>range: integer - the range in Km that the user wants to search</p>
 </li></ul>
 </dd><dt>Output
-<dd></dd></dl>
+<dd><ul><li>
+<p>quests: Array of <a href="Quest.html">Quest</a> - all the quests within
+range and that haven&#39;t been completed</p>
+</li><li>
+<p>Each quest includes images: Array of <a href="Image.html">Image</a> - all
+the images of the quest</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="search-source">
-            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search</span>
         <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>

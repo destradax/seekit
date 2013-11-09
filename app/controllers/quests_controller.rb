@@ -67,7 +67,8 @@ class QuestsController < ApplicationController
 	# 	* longitude: decimal - the longitude of the position of the user
 	# 	* range: integer - the range in Km that the user wants to search
 	# [Output]
-	# 	
+	# 	* quests: Array of Quest - all the quests within range and that haven't been completed
+	# 	* Each quest includes images: Array of Image - all the images of the quest
 	def search
 		user = User.find_by_id(params[:user_id])
 		unless user

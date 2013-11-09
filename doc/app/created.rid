@@ -1,8 +1,8 @@
-Sat, 09 Nov 2013 00:52:55 -0500
+Sat, 09 Nov 2013 01:01:04 -0500
 README.rdoc	Tue, 29 Oct 2013 22:17:57 -0500
 app/controllers/application_controller.rb	Mon, 04 Nov 2013 17:30:28 -0500
 app/controllers/friends_controller.rb	Thu, 07 Nov 2013 23:29:24 -0500
-app/controllers/quests_controller.rb	Sat, 09 Nov 2013 00:52:10 -0500
+app/controllers/quests_controller.rb	Sat, 09 Nov 2013 01:00:59 -0500
 app/controllers/user_controller.rb	Thu, 07 Nov 2013 21:15:41 -0500
 app/helpers/application_helper.rb	Tue, 29 Oct 2013 22:17:57 -0500
 app/helpers/friends_helper.rb	Wed, 06 Nov 2013 22:40:13 -0500
