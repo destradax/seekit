@@ -37,7 +37,7 @@ class FriendsController < ApplicationController
 		if request.post?
 			user = User.find_by_id(params[:user_id])
 			unless user
-				render json: {error: "user not fonud"}
+				render json: {error: "user not fonud"} and return
 			end
 			
 			render json: {friends: user.friends.each {|f| f.password = nil}}
@@ -60,5 +60,33 @@ class FriendsController < ApplicationController
 			friendship.destroy
 			render json: {msg: "Friend deleted"}
 		end
+	end
+
+	# Gets the latest actions of the user's friends
+	# [Input]
+	# 	* user_id: integer - the id of the current user
+	# [Output]
+	# 	* feeds: Array - the feeds
+	# 	Each feed contains the following information:
+	# 	*	quest: Quest - the quest that was completed
+	# 	* friend: User - the friend that completed the quest
+	# 	* time: timestamp - the timestamp of when the friend completed the quest
+	def feeds
+		user = User.find_by_id(params[:user_id])
+		unless user
+			render json: {error: "user not fonud"} and return
+		end
+		cq = CompletedQuest.where(user_id: user.friends.ids).order(created_at: :desc).limit(5)
+		feeds = []
+		cq.each do |q|
+			hash = {}
+			hash[:quest] = q.quest
+			friend = q.user
+			friend.password = nil
+			hash[:friend] = friend
+			hash[:time] = q.created_at
+			feeds.push(hash)
+		end
+		render json: {feeds: feeds}
 	end
 end

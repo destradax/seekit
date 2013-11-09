@@ -6,6 +6,7 @@ Seekit::Application.routes.draw do
 	post "friends/add"
 	post "friends/get"
 	post "friends/remove"
+	post "friends/feeds"
 
 	post "quests/get_completed"
 	post "quests/seekit"
