@@ -18,6 +18,8 @@ class QuestsController < ApplicationController
 	# [Input]
 	# 	* user_id: integer - the id of the current user
 	# 	* quest_id: integer - the id of the quest the user is trying to compelte
+	# 	* latitude: decimal - the latitude of the position of the user
+	# 	* longitude: decimal - the longitude of the position of the user
 	# [Output]
 	# 	* msg: string - in case the quest is marked as completed
 	# 	* error: string - in case the quest can't be marked as completed
@@ -31,18 +33,24 @@ class QuestsController < ApplicationController
 			render json: {error: "quest not found"} and return
 		end
 		if CompletedQuest.exists?(user_id: user.id, quest_id: quest.id)
-			render json: {error: "user already completed this quest"}
+			render json: {error: "user already completed this quest"} and return
 		end
 		
-		# TODO check for the distance between the user and the quest
+		ulat = params[:latitude] || 0
+		ulon = params[:longitude] || 0
+		distance = quest.get_distance_to_point(ulat.to_d, ulon.to_d)
+		puts "DISTANCE: ", distance
+		if quest.get_distance_to_point(ulat.to_d, ulon.to_d) > 0.03
+			render json: {error: "You are not there yet"} and return
+		end
 
 		cq = CompletedQuest.new
 		cq.user = user
 		cq.quest = quest
 		if cq.save
-			render json: {msg: "quest completed"}
+			render json: {msg: "quest completed"} and return 
 		else
-			render json: {error: "could not complete quest"}
+			render json: {error: "could not complete quest"} and return
 		end
 	end
 
