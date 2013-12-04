@@ -1,4 +1,4 @@
-require 'image'
+require 'imgur'
 class UserController < ApplicationController
 	# Logs the user in
 	# [Input]
