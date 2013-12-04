@@ -3,7 +3,7 @@ require 'uri'
 require 'base64'
 require 'json'
 
-class Image
+class Imgur
 	attr_accessor :base64, :url, :link, :hash
 
 	def initialize

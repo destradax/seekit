@@ -1,5 +1,6 @@
 require 'imgur'
 class UserController < ApplicationController
+
 	# Logs the user in
 	# [Input]
 	# 	* email: string - the email address of the user trying to log in
@@ -37,8 +38,8 @@ class UserController < ApplicationController
 			user.exp = 0
 
 			if params[:imagedata]
-				image = Image.new
-				image.base64 = imagedata
+				image = Imgur.new
+				image.base64 = params[:imagedata]
 				if image.upload
 					user.imageURL = image.link
 				end
