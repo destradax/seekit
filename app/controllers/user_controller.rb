@@ -1,3 +1,4 @@
+require 'image'
 class UserController < ApplicationController
 	# Logs the user in
 	# [Input]
@@ -22,6 +23,7 @@ class UserController < ApplicationController
 	# 	* name: string - the name of the new user
 	# 	* email: string - the email address of the new user
 	# 	* password: string - the password of the new user
+	# 	* imagedata: string - the image encoded in base 64. Optional
 	#
 	# [Output]
 	# 	* user: User - the new user
@@ -33,6 +35,15 @@ class UserController < ApplicationController
 			user.email = params[:email]
 			user.password = params[:password]
 			user.exp = 0
+
+			if params[:imagedata]
+				image = Image.new
+				image.base64 = imagedata
+				if image.upload
+					user.imageURL = image.link
+				end
+			end
+
 			if user.save
 				render json: user, root: true
 			else
