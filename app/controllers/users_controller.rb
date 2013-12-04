@@ -1,4 +1,6 @@
+require 'imgur'
 class UsersController < ApplicationController
+
 	# Logs the user in
 	# [Input]
 	# 	* email: string - the email address of the user trying to log in
@@ -22,6 +24,7 @@ class UsersController < ApplicationController
 	# 	* name: string - the name of the new user
 	# 	* email: string - the email address of the new user
 	# 	* password: string - the password of the new user
+	# 	* imagedata: string - the image encoded in base 64. Optional
 	#
 	# [Output]
 	# 	* user: User - the new user
@@ -33,6 +36,15 @@ class UsersController < ApplicationController
 			user.email = params[:email]
 			user.password = params[:password]
 			user.exp = 0
+
+			if params[:imagedata]
+				image = Imgur.new
+				image.base64 = params[:imagedata]
+				if image.upload
+					user.imageURL = image.link
+				end
+			end
+
 			if user.save
 				render json: user, root: true
 			else
