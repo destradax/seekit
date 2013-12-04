@@ -53,8 +53,36 @@ class UsersController < ApplicationController
 		end
   end
 
-	# Not implemented yet
-  def registerfacebook
+	# Logs a user in with a facebookId. If the user does not exist, 
+	# a new one is created. If the user exists, the facebookId is
+	# updated
+	# [Input]
+	# 	* name: string - the name of the new user trying to log in
+	# 	* email: string - the email address of the new user trying to log in
+	# 	* facebookId: string - the facebookId of the new user trying to log in
+	#
+	# [Output]
+	# 	* user: User - the user that has successfully logged in
+	# 	* error: string - in case the user can't log in
+  def facebook_login
+		if request.post?
+			user = User.find_by_email(params[:email])
+			if user
+				user.facebookId = params[:facebookId]
+			else
+				user = User.new
+				user.name = params[:name]
+				user.email = params[:email]
+				user.facebookId = params[:facebookId]
+				user.exp = 0
+			end
+
+			if user.save
+				render json: user, root: true
+			else
+				render json: {error: "could not update user"}
+			end
+		end
   end
 
 	def index
