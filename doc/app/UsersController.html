@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class UserController - Rails Application Documentation</title>
+<title>class UsersController - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/user_controller.rb
+    <li>app/controllers/users_controller.rb
   </ul>
 </nav>
 
@@ -70,11 +70,13 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-facebook_login">#facebook_login</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
     <li><a href="#method-i-login">#login</a>
     
     <li><a href="#method-i-register">#register</a>
-    
-    <li><a href="#method-i-registerfacebook">#registerfacebook</a>
     
   </ul>
 </nav>
@@ -111,6 +113,8 @@
   
     <li><a href="./Image.html">Image</a>
   
+    <li><a href="./Imgur.html">Imgur</a>
+  
     <li><a href="./Quest.html">Quest</a>
   
     <li><a href="./QuestsController.html">QuestsController</a>
@@ -119,9 +123,11 @@
   
     <li><a href="./User.html">User</a>
   
-    <li><a href="./UserController.html">UserController</a>
-  
     <li><a href="./UserHelper.html">UserHelper</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -130,7 +136,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class UserController</h1>
+  <h1 class="class">class UsersController</h1>
 
   <div id="description" class="description">
     
@@ -152,6 +158,100 @@
     
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-facebook_login" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">facebook_login</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Logs a user in with a facebookId. If the user does not exist,  a new one is
+created. If the user exists, the facebookId is updated</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>name: string - the name of the new user trying to log in</p>
+</li><li>
+<p>email: string - the email address of the new user trying to log in</p>
+</li><li>
+<p>facebookId: string - the facebookId of the new user trying to log in</p>
+</li></ul>
+</dd><dt>Output
+<dd><ul><li>
+<p>user: <a href="User.html">User</a> - the user that has successfully logged
+in</p>
+</li><li>
+<p>error: string - in case the user can&#39;t log in</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="facebook_login-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">facebook_login</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+                      <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>])
+                      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>
+                              <span class="ruby-identifier">user</span>.<span class="ruby-identifier">facebookId</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:facebookId</span>]
+                      <span class="ruby-keyword">else</span>
+                              <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
+                              <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+                              <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
+                              <span class="ruby-identifier">user</span>.<span class="ruby-identifier">facebookId</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:facebookId</span>]
+                              <span class="ruby-identifier">user</span>.<span class="ruby-identifier">exp</span> = <span class="ruby-value">0</span>
+                      <span class="ruby-keyword">end</span>
+
+                      <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">root</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+                      <span class="ruby-keyword">else</span>
+                              <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;could not update user&quot;</span>}
+                      <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- facebook_login-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- facebook_login-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+        <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
 
     
       <div id="method-i-login" class="method-detail ">
@@ -184,7 +284,7 @@ in</p>
 
           
           <div class="method-source-code" id="login-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
               <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
                       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>])
@@ -224,6 +324,8 @@ in</p>
 <p>email: string - the email address of the new user</p>
 </li><li>
 <p>password: string - the password of the new user</p>
+</li><li>
+<p>imagedata: string - the image encoded in base 64. Optional</p>
 </li></ul>
 </dd><dt>Output
 <dd><ul><li>
@@ -236,7 +338,7 @@ in</p>
 
           
           <div class="method-source-code" id="register-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">register</span>
               <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
                       <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
@@ -244,6 +346,15 @@ in</p>
                       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
                       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>]
                       <span class="ruby-identifier">user</span>.<span class="ruby-identifier">exp</span> = <span class="ruby-value">0</span>
+
+                      <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:imagedata</span>]
+                              <span class="ruby-identifier">image</span> = <span class="ruby-constant">Imgur</span>.<span class="ruby-identifier">new</span>
+                              <span class="ruby-identifier">image</span>.<span class="ruby-identifier">base64</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:imagedata</span>]
+                              <span class="ruby-keyword">if</span> <span class="ruby-identifier">image</span>.<span class="ruby-identifier">upload</span>
+                                      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">imageURL</span> = <span class="ruby-identifier">image</span>.<span class="ruby-identifier">link</span>
+                              <span class="ruby-keyword">end</span>
+                      <span class="ruby-keyword">end</span>
+
                       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">save</span>
                               <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>, <span class="ruby-identifier">root</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
                       <span class="ruby-keyword">else</span>
@@ -259,35 +370,6 @@ in</p>
 
         
       </div><!-- register-method -->
-
-    
-      <div id="method-i-registerfacebook" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">registerfacebook</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Not implemented yet</p>
-          
-
-          
-          <div class="method-source-code" id="registerfacebook-source">
-            <pre><span class="ruby-comment"># File app/controllers/user_controller.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">registerfacebook</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- registerfacebook-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- registerfacebook-method -->
 
     
     </section><!-- public-instance-method-details -->
