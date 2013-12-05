@@ -89,4 +89,38 @@ class FriendsController < ApplicationController
 		end
 		render json: {feeds: feeds}
 	end
+
+	# Searches for users given their facebookId
+	# [Input]
+	# 	* user_id: integer - the id of the current user
+	# 	* facebook_ids: Array of string - the facebook ids to search for
+	# [Output]
+	# 	* friends: Array of User - the users found
+	def search_facebook
+		if request.post?
+			user = User.find_by_id(params[:user_id])
+			unless user
+				render json: {error: "user not fonud"} and return
+			end
+
+			facebook_ids = JSON.parse(params[:facebook_ids])
+			friends = []
+
+			facebook_ids.each do |id|
+				friend = User.find_by_facebookId(id)
+
+				if friend
+					unless user.friends.include? friend
+						friendship = Friendship.new
+						friendship.user = user
+						friendship.friend = friend
+						friendship.save
+					end
+					friends.push(friend)
+				end
+			end
+
+			render json: {friends: friends.as_json}
+		end
+	end
 end
