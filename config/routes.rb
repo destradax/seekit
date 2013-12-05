@@ -2,6 +2,7 @@ Seekit::Application.routes.draw do
   post "users/login"
   post "users/register"
   post "users/facebook_login"
+	post "users/search_emails"
 	get "users/index"
 
 	post "friends/add"
