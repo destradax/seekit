@@ -1,10 +1,12 @@
 <h1>Users</h1>
 
 <% @users.each do |user| %>
+	<%= link_to user_path(user) do  %>
 	<div class="user">
 		<img src="<%= user.imageURL %>" class="thumb"  />
 		Name: <%= user.name %><br />
 		Email: <%= user.email %><br />
 		XP: <%= user.exp %>
 	</div>
+	<% end %>
 <% end %>

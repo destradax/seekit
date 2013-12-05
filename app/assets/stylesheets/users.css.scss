@@ -4,15 +4,24 @@
 .thumb{
 	background-color: #000;
 	height: 100px;
-	float: left;
-	margin-right: 15px;
+	width: 100px;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
 }
 
 div.user{
-	overflow: hidden;
+	text-align: center;
+	text-decoration: none;
+	color: #000;
 	border: 1px solid black;
 	border-radius: 10px;
 	padding: 5px 5px 5px 5px;
 	margin-top: 10px;
 	margin-left: 10px;
+	float: left;
+}
+div.user:hover{
+	background-color: rgb(1, 174, 240);
+	color: #fff;
 }

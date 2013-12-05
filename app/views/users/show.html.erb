@@ -1,0 +1,19 @@
+<h1><%= @user.name %></h1>
+
+Email: <%= @user.email %><br />
+Facebook ID: <%= @user.facebookId %><br />
+image URL: <%= @user.imageURL %><br />
+Experience: <%= @user.exp %>
+
+<hr />
+<h2><%= @user.name %>'s Friends</h2>
+<% @user.friends.each do |friend| %>
+	<%= link_to user_path(friend) do  %>
+	<div class="user">
+		<img src="<%= friend.imageURL %>" class="thumb"  />
+		Name: <%= friend.name %><br />
+		Email: <%= friend.email %><br />
+		XP: <%= friend.exp %>
+	</div>
+	<% end %>
+<% end %>

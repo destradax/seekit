@@ -8,11 +8,13 @@
 </head>
 <body>
 	<div id="header">
-		<%= image_tag "logo.png", class: "logo" %>
+		<%= link_to users_path do %>
+			<%= image_tag "logo.png", class: "logo" %>
+		<% end %>
 	</div>
-
-	<%= yield %>
-
+	<div id="content">
+		<%= yield %>
+	</div>
 	<div id="footer">
 		SeeKit! &copy; | Snerol Team
 	</div>
