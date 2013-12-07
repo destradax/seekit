@@ -1,12 +1,18 @@
+<p id="notice"><%= notice %></p>
+<p id="error"><%= flash[:error] %></p>
 <h1><%= @user.name %></h1>
 
-Profile pic:<br />
-<img src="<%= @user.imageURL %>" class="profilepic"/><br />
-Email: <%= @user.email %><br />
-Facebook ID: <%= @user.facebookId %><br />
-image URL: <%= @user.imageURL %><br />
-Experience: <%= @user.exp %>
+<% if @user.imageURL=="" || @user.imageURL.nil? %>
+	You don't have a profile pic :(<br /><br />
+<% else %>
+	Profile pic:<br />
+	<img src="<%= @user.imageURL %>" class="profilepic"/><br />
+<% end %>
 
+<%= render partial: 'form'%>
+
+<br />
+<%= link_to '<< Back', users_path %>
 <hr />
 <h2><%= @user.name %>'s Friends</h2>
 <% @user.friends.each do |friend| %>

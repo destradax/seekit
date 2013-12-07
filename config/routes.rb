@@ -3,10 +3,9 @@ Seekit::Application.routes.draw do
   post "users/register"
   post "users/facebook_login"
 	post "users/search_emails"
-	
-	get "users/index", as: "users"
-	get "/users/:id", to: "users#show", as: "user"
 
+	resources :users
+	
 	post "friends/add"
 	post "friends/get"
 	post "friends/remove"
