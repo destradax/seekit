@@ -92,12 +92,18 @@ class UsersController < ApplicationController
 	# 	* users: Array of User - the users found
 	def search_emails
 		if request.post?
-			emails = JSON.parse(params[:emails])
+			if params[:emails].class == Array
+				emails = params[:emails]
+			else
+				emails = JSON.parse(params[:emails])
+			end
 			users = []
 			emails.each do |email|
 				user = User.find_by_email(email)
-				user.password = nil
-				users.push(user) if user
+				if user
+					user.password = nil
+					users.push(user) 
+				end
 			end
 
 			render json: {users: users.as_json}
