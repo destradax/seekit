@@ -6,6 +6,9 @@
 # 	* hint: string - a hint to help users find this place
 # 	* brief: text - a brief text about the place this quest points to, that will be shown once the user completes the quest
 # 	* difficulty: integer - the difficulty of this quest
+# 	* place_name: string - the name of the place the quest points to
+# 	* phone: string - the pone number of the place the quest points to
+# 	* fun_facts: text - fun facts about the place the quest points to
 class Quest < ActiveRecord::Base
 	has_many :images
 	has_many :completed_quests

@@ -149,6 +149,12 @@
 be shown once the user completes the quest</p>
 </li><li>
 <p>difficulty: integer - the difficulty of this quest</p>
+</li><li>
+<p>place_name: string - the name of the place the quest points to</p>
+</li><li>
+<p>phone: string - the pone number of the place the quest points to</p>
+</li><li>
+<p>fun_facts: text - fun facts about the place the quest points to</p>
 </li></ul>
 </dd></dl>
 
@@ -195,7 +201,7 @@ be shown once the user completes the quest</p>
 
           
           <div class="method-source-code" id="get_distance_to_point-source">
-            <pre><span class="ruby-comment"># File app/models/quest.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/models/quest.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_distance_to_point</span>(<span class="ruby-identifier">ulat</span>, <span class="ruby-identifier">ulon</span>)
         <span class="ruby-comment"># RAD_PER_DEG = Math::PI / 180</span>
         <span class="ruby-identifier">rad_per_deg</span> = <span class="ruby-value">0.017453292519943295</span>

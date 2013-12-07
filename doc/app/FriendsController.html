@@ -78,6 +78,8 @@
     
     <li><a href="#method-i-remove">#remove</a>
     
+    <li><a href="#method-i-search_facebook">#search_facebook</a>
+    
   </ul>
 </nav>
 
@@ -378,6 +380,72 @@
 
         
       </div><!-- remove-method -->
+
+    
+      <div id="method-i-search_facebook" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search_facebook</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Searches for users given their facebookId</p>
+<dl class="rdoc-list label-list"><dt>Input
+<dd><ul><li>
+<p>user_id: integer - the id of the current user</p>
+</li><li>
+<p>facebook_ids: Array of string - the facebook ids to search for</p>
+</li></ul>
+</dd><dt>Output
+<dd><ul><li>
+<p>friends: Array of <a href="User.html">User</a> - the users found</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="search_facebook-source">
+            <pre><span class="ruby-comment"># File app/controllers/friends_controller.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search_facebook</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
+                <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
+                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>
+                        <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">error</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;user not fonud&quot;</span>} <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">facebook_ids</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:facebook_ids</span>])
+                <span class="ruby-identifier">friends</span> = []
+
+                <span class="ruby-identifier">facebook_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">id</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">friend</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_facebookId</span>(<span class="ruby-identifier">id</span>)
+
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">friend</span>
+                                <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">friends</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">friend</span>
+                                        <span class="ruby-identifier">friendship</span> = <span class="ruby-constant">Friendship</span>.<span class="ruby-identifier">new</span>
+                                        <span class="ruby-identifier">friendship</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">user</span>
+                                        <span class="ruby-identifier">friendship</span>.<span class="ruby-identifier">friend</span> = <span class="ruby-identifier">friend</span>
+                                        <span class="ruby-identifier">friendship</span>.<span class="ruby-identifier">save</span>
+                                <span class="ruby-keyword">end</span>
+                                <span class="ruby-identifier">friend</span>.<span class="ruby-identifier">password</span> = <span class="ruby-keyword">nil</span>
+                                <span class="ruby-identifier">friends</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">friend</span>)
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">friends</span><span class="ruby-operator">:</span> <span class="ruby-identifier">friends</span>.<span class="ruby-identifier">as_json</span>}
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- search_facebook-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- search_facebook-method -->
 
     
     </section><!-- public-instance-method-details -->

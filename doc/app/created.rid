@@ -1,9 +1,9 @@
-Wed, 04 Dec 2013 00:24:39 -0500
+Sat, 07 Dec 2013 00:43:22 -0500
 README.rdoc	Tue, 03 Dec 2013 23:07:23 -0500
 app/controllers/application_controller.rb	Tue, 03 Dec 2013 23:07:23 -0500
-app/controllers/friends_controller.rb	Tue, 03 Dec 2013 23:07:23 -0500
-app/controllers/quests_controller.rb	Tue, 03 Dec 2013 23:07:23 -0500
-app/controllers/users_controller.rb	Wed, 04 Dec 2013 00:23:35 -0500
+app/controllers/friends_controller.rb	Fri, 06 Dec 2013 23:26:25 -0500
+app/controllers/quests_controller.rb	Sat, 07 Dec 2013 00:30:15 -0500
+app/controllers/users_controller.rb	Fri, 06 Dec 2013 23:54:19 -0500
 app/helpers/application_helper.rb	Tue, 03 Dec 2013 23:27:04 -0500
 app/helpers/friends_helper.rb	Tue, 03 Dec 2013 23:07:23 -0500
 app/helpers/quests_helper.rb	Tue, 03 Dec 2013 23:07:23 -0500
@@ -12,6 +12,6 @@ app/helpers/users_helper.rb	Tue, 03 Dec 2013 23:07:23 -0500
 app/models/completed_quest.rb	Tue, 03 Dec 2013 23:07:23 -0500
 app/models/friendship.rb	Tue, 03 Dec 2013 23:07:23 -0500
 app/models/image.rb	Tue, 03 Dec 2013 23:07:23 -0500
-app/models/quest.rb	Tue, 03 Dec 2013 23:07:23 -0500
+app/models/quest.rb	Sat, 07 Dec 2013 00:43:10 -0500
 app/models/user.rb	Tue, 03 Dec 2013 23:07:23 -0500
 lib/imgur.rb	Tue, 03 Dec 2013 23:07:23 -0500

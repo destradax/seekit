@@ -190,6 +190,12 @@
 be shown once the user completes the quest</p>
 </li><li>
 <p>difficulty: integer - the difficulty of this quest</p>
+</li><li>
+<p>place_name: string - the name of the place the quest points to</p>
+</li><li>
+<p>phone: string - the pone number of the place the quest points to</p>
+</li><li>
+<p>fun_facts: text - fun facts about the place the quest points to</p>
 </li></ul>
 </dd><dt>Output
 <dd><ul><li>
@@ -200,7 +206,7 @@ be shown once the user completes the quest</p>
 
           
           <div class="method-source-code" id="add-source">
-            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 109</span>
+            <pre><span class="ruby-comment"># File app/controllers/quests_controller.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>
         <span class="ruby-identifier">quest</span> = <span class="ruby-constant">Quest</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
@@ -213,6 +219,9 @@ be shown once the user completes the quest</p>
         <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">longitude</span> = <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">longitude</span>.<span class="ruby-identifier">to_d</span>
         <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">difficulty</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:difficulty</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
         <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">difficulty</span> = <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">difficulty</span>.<span class="ruby-identifier">to_i</span>      
+        <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">place_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:place_name</span>]
+        <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">phone</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:phone</span>]
+        <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">fun_facts</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:fun_facts</span>]
         
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">quest</span>.<span class="ruby-identifier">save</span>
                 <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">quest</span>, <span class="ruby-identifier">root</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
