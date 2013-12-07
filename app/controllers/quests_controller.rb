@@ -104,6 +104,9 @@ class QuestsController < ApplicationController
 	# 	* hint: string - a hint to help users find this place
 	# 	* brief: text - a brief text about the place this quest points to, that will be shown once the user completes the quest
 	# 	* difficulty: integer - the difficulty of this quest
+	# 	* place_name: string - the name of the place the quest points to
+	# 	* phone: string - the pone number of the place the quest points to
+	# 	* fun_facts: text - fun facts about the place the quest points to
 	# [Output]
 	#		* quest: Quest - the new quest
 	def add
@@ -118,6 +121,9 @@ class QuestsController < ApplicationController
 		quest.longitude = quest.longitude.to_d
 		quest.difficulty = params[:difficulty] || 0
 		quest.difficulty = quest.difficulty.to_i	
+		quest.place_name = params[:place_name]
+		quest.phone = params[:phone]
+		quest.fun_facts = params[:fun_facts]
 		
 		if quest.save
 			render json: quest, root: true
