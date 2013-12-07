@@ -116,6 +116,7 @@ class FriendsController < ApplicationController
 						friendship.friend = friend
 						friendship.save
 					end
+					friend.password = nil
 					friends.push(friend)
 				end
 			end

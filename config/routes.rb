@@ -10,6 +10,7 @@ Seekit::Application.routes.draw do
 	post "friends/get"
 	post "friends/remove"
 	post "friends/feeds"
+	post "friends/search_facebook"
 
 	post "quests/get_completed"
 	post "quests/seekit"
