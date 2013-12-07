@@ -110,6 +110,31 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# Uploads an image and returns the link to it
+	# [Input]
+	# 	* user_id: integer - the id of the current user
+	# 	* imagedata: string - the image encoded in base 64
+	# [Output]
+	# 	* user: User - the User with the imageURL property updated
+	# 	* error: string - in case the image couldn't be uploaded
+	def change_pic
+		if request.post?
+			image = Imgur.new
+			image.base64 = params[:imagedata]
+			if image.upload
+				user = User.find(params[:user_id])
+				user.imageURL = image.link
+				if user.save
+					render json: user, root: true and return
+				else
+					render json: {error: "Could not update the user"} and return
+				end
+			else
+				render json: {error: "Could not upload image"} and return
+			end
+		end
+	end
+
 	def index
 		@users = User.all
 	end

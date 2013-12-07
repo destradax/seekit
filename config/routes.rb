@@ -3,6 +3,7 @@ Seekit::Application.routes.draw do
   post "users/register"
   post "users/facebook_login"
 	post "users/search_emails"
+	post "users/change_pic"
 
 	resources :users
 	
