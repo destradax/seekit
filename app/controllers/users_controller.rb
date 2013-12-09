@@ -135,6 +135,44 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# Searches for friends given their email address
+	# [Input]
+	# 	* user_id: integer - the id of the current user
+	# 	* emails: Array of string - the email addresses to search for
+	# [Output]
+	# 	* friends: Array of User - the users found that are friends with the current user
+	# 	* nonfriends: Array of User - the users found that are not friends with the current user
+	def seach_friends_by_email
+		if request.post?
+			if params[:emails].class == Array
+				emails = params[:emails]
+			else
+				emails = JSON.parse(params[:emails])
+			end
+
+			user = User.find(params[:user_id])
+			unless user
+				render {error: "Couldn't find user with id #{user_id}"}
+			end
+
+			friends = []
+			nonfriends = []]
+			emails.each do |email|
+				friend = User.find_by_email(email)
+				if friend
+					friend.password = nil
+					if user.friends.include? friend
+						friends.push friend
+					else
+						nonfriends.push friend
+					end
+				end
+			end
+
+			render json: {friends: friends, nonfriends: nonfriends}
+		end
+	end
+
 	def index
 		@users = User.all
 	end
