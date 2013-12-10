@@ -1,0 +1,12 @@
+<h1>Quests</h1>
+
+<% @quests.each do |quest| %>
+	<%= link_to quest_path(quest) do %>
+		<div class="quest">
+			<img src="" class="thumb"/>
+			Name: <%= quest.name %><br />
+			Hint: <%= quest.hint %><br />
+			Difficulty: <%= quest.difficulty %><br />
+		</div>
+	<% end %>
+<% end %>

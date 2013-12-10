@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+<p id="error"><%= flash[:error] %></p>
+<h1><%= @quest.name %></h1>
+
+<% if @quest.images.count == 0 %>
+	This quest doesn't have any images :(<br /><br />
+<% else %>
+	Quest images:<br />
+	<% @quest.images.each do |image| %>
+		<img src="<%= image.url %>" class="questpic"/>
+	<% end %>
+<% end %>
+
+<%= render partial: 'form'%>
+
+<br />
+<%= link_to '<< Back', quests_path %>

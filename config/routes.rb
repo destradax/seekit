@@ -13,6 +13,8 @@ Seekit::Application.routes.draw do
 	post "friends/feeds"
 	post "friends/search_facebook"
 
+	resources :quests
+
 	post "quests/get_completed"
 	post "quests/seekit"
 	post "quests/get_all"

@@ -131,4 +131,27 @@ class QuestsController < ApplicationController
 			render json: {error: "could not add quest"}
 		end
 	end
+
+	def index
+		@quests = Quest.all
+	end
+
+	def show
+		@quest = Quest.find(params[:id])
+	end
+
+	def update
+		@quest = Quest.find(params[:id])
+		if @quest.update(quest_params)
+			redirect_to @quest, notice: "Quest updated"
+		else
+			redirect_to @quest, flash: {error: "Could not update quest"}
+		end
+	end
+
+	def quest_params
+		params.require(:quest)
+			.permit(:latitude, :longitude, :name, :address, :hint, :brief, 
+				:difficulty, :place_name, :phone, :fun_facts)
+	end
 end
