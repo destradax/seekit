@@ -152,11 +152,11 @@ class UsersController < ApplicationController
 
 			user = User.find(params[:user_id])
 			unless user
-				render {error: "Couldn't find user with id #{user_id}"}
+				render json: {error: "Couldn't find user with id #{user_id}"} and return
 			end
 
 			friends = []
-			nonfriends = []]
+			nonfriends = []
 			emails.each do |email|
 				friend = User.find_by_email(email)
 				if friend
