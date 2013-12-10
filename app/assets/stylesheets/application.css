@@ -40,3 +40,15 @@ img.logo{
 #error{
 	color: red;
 }
+
+div.delete{
+	background-color: #c00;
+	float: right;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+div.delete a{
+	text-decoration: none;
+	color: white;
+}
