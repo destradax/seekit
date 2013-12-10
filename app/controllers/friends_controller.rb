@@ -108,14 +108,7 @@ class FriendsController < ApplicationController
 
 			facebook_ids.each do |id|
 				friend = User.find_by_facebookId(id)
-
 				if friend
-					unless user.friends.include? friend
-						friendship = Friendship.new
-						friendship.user = user
-						friendship.friend = friend
-						friendship.save
-					end
 					friend.password = nil
 					friends.push(friend)
 				end
