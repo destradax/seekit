@@ -149,6 +149,12 @@ class QuestsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@quest = Quest.find(params[:id])
+		@quest.destroy
+		redirect_to quests_path
+	end
+
 	def quest_params
 		params.require(:quest)
 			.permit(:latitude, :longitude, :name, :address, :hint, :brief, 
