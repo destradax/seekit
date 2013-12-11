@@ -66,20 +66,35 @@ class UsersController < ApplicationController
 	# 	* error: string - in case the user can't log in
   def facebook_login
 		if request.post?
+			unless params[:email]
+				render json: {error: "Please provide email"} and return
+			end
+			
+			unless params[:facebookId]
+				render json: {error: "Please provide facebookId"} and return
+			end
+			
 			user = User.find_by_email(params[:email])
 			if user
 				user.facebookId = params[:facebookId]
 			else
 				user = User.new
+
+				unless params[:name]
+					render json: {error: "Please provide name"} and return
+				end
+				user.password = (0...8).map { (65 + rand(26)).chr }.join
 				user.name = params[:name]
 				user.email = params[:email]
 				user.facebookId = params[:facebookId]
 				user.exp = 0
+				puts user.inspect
 			end
 
 			if user.save
 				render json: user, root: true
 			else
+				user.errors.full_messages.each { |e| puts e }
 				render json: {error: "could not update user"}
 			end
 		end
