@@ -10,9 +10,12 @@
 # 	* phone: string - the pone number of the place the quest points to
 # 	* fun_facts: text - fun facts about the place the quest points to
 class Quest < ActiveRecord::Base
-	has_many :images
+	has_many :images, :dependent => :destroy
 	has_many :completed_quests
 	has_many :users, through: :completed_quests
+	accepts_nested_attributes_for :images,
+		reject_if: lambda { |i| i[:url].blank? },
+		allow_destroy: true
 
 	# Returns the distance in Km to a given point 
 	# [Input]

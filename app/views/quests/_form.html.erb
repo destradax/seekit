@@ -53,7 +53,16 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-	<div class="delete">
-		<%= link_to 'Delete Quest', @quest, method: :delete, data: {confirm: "Are you sure?"} %>
-	</div>
+
+	<% unless @quest.id.nil? %>
+		<hr />
+		<h2>Images</h2>
+		<%= f.fields_for :images do |builder| %>
+			<%= render "images_fields", f: builder %>
+		<% end %>
+
+		<div class="delete">
+			<%= link_to 'Delete Quest', @quest, method: :delete, data: {confirm: "Are you sure?"} %>
+		</div>
+	<% end  %>
 <% end %>

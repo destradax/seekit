@@ -11,6 +11,14 @@
  *= require_self
  *= require_tree .
  */
+html{
+	font-family: arial, sans-serif;
+}
+
+input[type=text], input[type=number], textarea {
+	border-radius: 5px;
+}
+
 #header{
 	height: 50px;
 	color: #fff;
@@ -49,6 +57,18 @@ div.delete{
 }
 
 div.delete a{
+	text-decoration: none;
+	color: white;
+}
+
+div.new{
+	background-color: #0c0;
+	float: right;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+div.new a{
 	text-decoration: none;
 	color: white;
 }

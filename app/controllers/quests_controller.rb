@@ -138,11 +138,14 @@ class QuestsController < ApplicationController
 
 	def show
 		@quest = Quest.find(params[:id])
+		if @quest.images.count == 0
+			3.times {@quest.images.build}
+		end
 	end
 
 	def update
 		@quest = Quest.find(params[:id])
-		if @quest.update(quest_params)
+		if @quest.update_attributes(quest_params)
 			redirect_to @quest, notice: "Quest updated"
 		else
 			redirect_to @quest, flash: {error: "Could not update quest"}
@@ -158,6 +161,20 @@ class QuestsController < ApplicationController
 	def quest_params
 		params.require(:quest)
 			.permit(:latitude, :longitude, :name, :address, :hint, :brief, 
-				:difficulty, :place_name, :phone, :fun_facts)
+				:difficulty, :place_name, :phone, :fun_facts, 
+				images_attributes: [:id, :url, :_destroy])
+	end
+
+	def new
+		@quest = Quest.new
+	end
+
+	def create
+		@quest = Quest.new(quest_params)
+		if @quest.save
+			redirect_to @quest, notice: "Quest created"
+		else
+			redirect_to @quest, flash: {error: "Could not create quest"}
+		end
 	end
 end

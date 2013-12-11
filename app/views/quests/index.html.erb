@@ -5,7 +5,12 @@
 		<div class="quest">
 			Name: <%= quest.name %><br />
 			Hint: <%= quest.hint %><br />
-			Difficulty: <%= quest.difficulty %><br />
+			Difficulty: <%= quest.difficulty %>
 		</div>
 	<% end %>
 <% end %>
+
+<br />
+<div class="new">
+	<%= link_to 'New Quest', new_quest_path %>
+</div>
