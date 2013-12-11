@@ -138,9 +138,7 @@ class QuestsController < ApplicationController
 
 	def show
 		@quest = Quest.find(params[:id])
-		if @quest.images.count == 0
-			3.times {@quest.images.build}
-		end
+		3.times {@quest.images.build}
 	end
 
 	def update
