@@ -1,129 +1,141 @@
-<html>
-	<head>
-		<meta charset="UTF-8">
-	</head>
-	<body>
-		<h1>Lista de Web Services y entidades</h1>
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Seekit!</title>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+	<div id="top">
+		<div id="videologo">
 
-		<h2>Web Services</h2>
+			<div class="logo margen"> <img src="img/img_logo.png"/>
+			</div>
 
-		<table>
-			<tr>
-				<th>Método</th>
-				<th>Descripción</th>
-				<th>Tipo Petición</th>
-				<th>In</th>
-				<th>Out</th>
-			</tr>
-			<tr>
-				<td>/user/login</td>
-				<td>Método para iniciar sesión en la aplicación</td>
-				<td>POST</td>
-				<td>LoginRequest</td>
-				<td>LoginResponse</td>
-			</tr>
-			<tr>
-				<td>/user/register</td>
-				<td>Método para registrar un nuevo usuario</td>
-				<td>POST</td>
-				<td>RegisterRequest</td>
-				<td>LoginResponse</td>
-			</tr>
-			<tr>
-				<td>/user/registerfacebook</td>
-				<td>Método para registrar usuario con facebook</td>
-				<td>POST</td>
-				<td>RegisterFacebookRequest</td>
-				<td>LoginResponse</td>
-			</tr>
-			<tr>
-				<td>/feed/all</td>
-				<td>Método para traer todos los feeds de los amigos</td>
-				<td>POST</td>
-				<td>FeedRequest</td>
-				<td>FeedResponse</td>
-			</tr>
-		</table>
+			<div class="video margen">
+			<iframe width="440" height="340" src="http://www.youtube.com/embed/vrA2uCfj_0M"></iframe>
+			</div>
 
-		<h2>Entidades</h2>
-		<ol>
-			<li>
-				User
-					<ul>
-						<li>id: int</li>
-						<li>name: string</li>
-						<li>email: string</li>
-						<li>password: string</li>
-						<li>facebookId: string</li>
-						<li>imageUrl: string</li>
-					</ul>
-			</li>
-			<li>Quest</li>
-				<ul>
-					<li>id: int</li>
-					<li>latitude: double</li>
-					<li>longitude: double</li>
-					<li>name: string</li>
-					<li>address: string</li>
-					<li>hint: string</li>
-					<li>brief: text</li>
-					<li>difficulty: int</li>
-				</ul>
-			<li>
-				LoginRequest
-				<ul class="entidad">
-					<li>email: string - correo electrónico del usuario</li>
-					<li>password: string - contraseña con codificación MD5</li>
-				</ul>
-			</li>
+			<div class="iphone"> <img src="img/img_iphone.png">
+			</div>
 
-			<li>
-				Loginresponse
-				<ul>
-					<li>user: User - entidad de usuario</li>
-				</ul>
-			</li>
+			<div class="descripcion margen"> 
+				<h2>Rediscover your city</h2>
 
-			<li>
-				RegisterRequest
-				<ul>
-					<li>name: string - nombre completo del usuario</li>
-					<li>email: string - correo electrónico del usuario</li>
-					<li>password: string - contraseña con codificación MD5</li>
-				</ul>
-			</li>
-			<li>
-				RegisterFacebookRequest
-				<ul>
-					<li>name: string - nombre completo del usuario</li>
-					<li>email: string - correo electrónico del usuario</li>
-					<li>password: string - contraseña con codificación MD5</li>
-				</ul>
-			</li>
-			<li>
-				FeedRequest
-				<ul>
-					<li>userId: int - id del usuario que realiza la petición</li>
-					<li>feedUserid: int - id del usuario a consultar (null si es all)</li>
-				</ul>
-			</li>
-			<li>
-				FeedResponse
-				<ul>
-					<li>feedList: Array<FeedEntity> - listado de feeds</li>
-				</ul>
-			</li>
-			<li>
-				FeedEntity
-					<ul>
-						<li>userId: int - id del usuario a quien pertenece el feed</li>
-						<li>userName: string - nombre del usuario del feed</li>
-						<li>userPictureUrl: string - url de la imagen del usuario</li>
-						<li>dateFeed: string - fecha de cuando fué ganado (fecha epoch)</li>
-						<li>questName: string - nombre del quest</li>
-						<li>questId: int - identificador del quest</li>
-					</ul>
-			</li>
-		</ol>
-	</body>
+				<p>Explore and get to know your city like never before. Reach goals, visit places that share a common interest or have a special meaning to you. Share your experience with your friends and earn points to become your city guru. 
+				</p>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="medio">
+		<h1>TEAM</h1>
+		<div class="equipo">
+			
+			<img src="img/img_santiago.png"></li>
+			<h3>Santiago Bustamante</h3>
+			<p class="perfil">System Engineer, Seekit! iOS Developer. living by "go big or go home" to give the best of me to do awesome things thinking in the people.</p>
+
+			<a href="https://www.facebook.com/busta117" target="_blank" class="boton">
+			<img src="img/btn_facebook.png" width="27" height="27" ></a>
+
+			<a href="https://twitter.com/busta117" target="_blank" class="boton">
+			<img src="img/btn_twitter.png" width="27" height="27" ></a>
+
+			<a href="http://www.linkedin.com/pub/santiago-bustamante/4b/107/20a" target="_blank" class="boton">
+			<img src="img/btn_linkedin.png" width="27" height="27"></a>
+		
+		</div>
+
+		<div class="equipo">
+			
+			<img src="img/img_laura.png">
+			<h3>Laura Agudelo</h3>
+			<p class= "perfil"> Graphic Designer, Seekit! User interface designer. I Believe in a sustainable digital future.
+			</p>
+
+			<a href="https://www.facebook.com/laura.a.guzman.566" target="_blank" class="boton">
+			<img src="img/btn_facebook.png" width="27" height="27" ></a>
+
+			<a href="https://twitter.com/LagudeloG" target="_blank" class="boton">
+			<img src="img/btn_twitter.png" width="27" height="27" ></a>
+
+			<a href="http://co.linkedin.com/pub/laura-agudelo-guzm%C3%A1n/18/9b8/596" target="_blank" class="boton">
+			<img src="img/btn_linkedin.png" width="27" height="27"></a>
+		
+		</div>
+		
+		<div class="equipo">
+			
+			<img src="img/img_juan.png">
+			<h3>Juan Del Valle</h3>
+			<p class= "perfil"> I like software development, specially web and mobile development. I am in charge of several parts of the front end.
+			</p>
+
+			<a href="https://www.facebook.com/jdelvall" target="_blank" class="boton">
+			<img src="img/btn_facebook.png" width="27" height="27" ></a>
+
+			<a href="https://twitter.com/juangdelvalle" target="_blank" class="boton">
+			<img src="img/btn_twitter.png" width="27" height="27" ></a>
+
+			<a href="http://co.linkedin.com/pub/juan-guillermo-del-valle-ruiz/47/489/70b" target="_blank" class="boton">
+			<img src="img/btn_linkedin.png" width="27" height="27"></a>
+		
+		</div>
+
+		<div class="equipo">
+			
+			<img src="img/img_daniel.png">
+			<h3>Daniel Estrada</h3>
+			<p class="perfil">I'm a Development Analyst at my current job. Love web developing and Ruby on Rails. I'm in charge of the backend of the application. </p>
+
+			<a href="https://www.facebook.com/destradax" target="_blank" class="boton">
+			<img src="img/btn_facebook.png" width="27" height="27" ></a>
+
+			<a href="http://co.linkedin.com/pub/daniel-estrada/33/b65/b84/" target="_blank" class="boton">
+			<img src="img/btn_linkedin.png" width="27" height="27"></a>
+
+		</div>
+
+	</div>
+
+	<div id="bottom">
+
+		<div class="tiendas">
+
+			<img src="img/img_appstore.png">
+			<img src="img/img_googleplay.png" class="margen">
+
+		</div>
+		
+		<div class="contacto">
+			<img src="img/img_icono.png">
+			<div class="contenedor">
+
+				<h3 class="texto">¿Do you wanna know more about Seekit!? </h3>
+
+				<a href="mailto:info.seekit@gmail.com?Subject=Contact" class="mailto">
+				<img src="img/btn_contacto.png"></a>
+
+			</div>
+
+		</div>
+
+		<div class="pata">
+
+			<p>Made in Medellín, Colombia</p>
+			<p>© 2013 SnerolTeam - All rights reserved.</p>
+		</div>
+
+
+	</div>
+
+
+
+	</div>
+</body>
 </html>
