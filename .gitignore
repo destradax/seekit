@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
+# Ignore doc
+/doc/*
+
 # Ignore project config
 .project

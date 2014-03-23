@@ -11,26 +11,15 @@
  *= require_self
  *= require_tree .
  */
-html{
-	font-family: arial, sans-serif;
-}
-
 input[type=text], input[type=number], textarea {
 	border-radius: 5px;
 }
 
-#header{
-	height: 50px;
-	color: #fff;
-	background-color: rgb(1, 174, 240);
-	padding: 10px 10px 10px 10px;
-	border-radius: 10px;
-}
 #content{
 	display: block;
 	overflow: hidden;
 }
-#footer{
+footer{
 	text-align: center;
 	color: #fff;
 	background-color: rgb(1, 174, 240);
@@ -40,7 +29,8 @@ input[type=text], input[type=number], textarea {
 }
 
 img.logo{
-	height: 50px;
+	height: 100%;
+	position: absolute;
 }
 #notice{
 	color: green;
