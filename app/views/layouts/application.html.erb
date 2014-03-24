@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Seekit</title>
-		<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <head>
+	<title>Seekit</title>
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
-		<!-- Bootstrap -->
-		<%= stylesheet_link_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", media: "all" %>
-		<%= javascript_include_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js", media: "all" %>
+	<!-- Bootstrap -->
+	<%= stylesheet_link_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", media: "all" %>
+	<%= javascript_include_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js", media: "all" %>
 
-		<%= csrf_meta_tags %>
+	<%= csrf_meta_tags %>
 
-		<meta name="viewport" content="initial-scale=1">
-	</head>
-	<body>
-		<header>
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<%= link_to users_path do %>
-						<%= image_tag "logo.png", class: "logo" %>
-					<% end %>
-				</div>
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="<%= params[:controller] == "users" ? "active" : "" %>">
-							<a href="/users">Users</a>
-						</li>
-						<li class="<%= params[:controller] == "quests" ? "active" : "" %>">
-							<a href="/quests">Quests</a>
-						</li>
-					</ul>
-				</div>
-			</nav>
-		</header>
-		<div id="content">
-			<%= yield %>
+	<meta name="viewport" content="initial-scale=1">
+  </head>
+  <body>
+	<header>
+	  <nav class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </button>
+		  <%= link_to users_path class: "navbar-brand" do %>
+		  	<%= image_tag "logo.png" %>
+		  <% end %>
 		</div>
-		<div id="footer">
-
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+		  <p class="navbar-text navbar-right">Signed in as Guest</p>
+		  <ul class="nav navbar-nav navbar-left">
+			<li class="<%= params[:controller] == "users" ? "active" : "" %>">
+			  <a href="/users">Users</a>
+			</li>
+			<li class="<%= params[:controller] == "quests" ? "active" : "" %>">
+			  <a href="/quests">Quests</a>
+			</li>
+		  </ul>
 		</div>
-		<footer>
-			SeeKit! &copy; | Snerol Team | Medell&iacute;n
-		</footer>
-	</body>
+	  </nav>
+	</header>
+	<section id="main">
+	  <%= yield %>
+	</section>
+	<footer>
+	  SeeKit! &copy; | Snerol Team | Medell&iacute;n
+	</footer>
+  </body>
 </html>

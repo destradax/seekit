@@ -15,10 +15,11 @@ input[type=text], input[type=number], textarea {
 	border-radius: 5px;
 }
 
-#content{
+section{
 	display: block;
 	overflow: hidden;
 }
+
 footer{
 	text-align: center;
 	color: #fff;
@@ -28,10 +29,6 @@ footer{
 	display: block;
 }
 
-img.logo{
-	height: 50px;
-	position: absolute;
-}
 #notice{
 	color: green;
 }
