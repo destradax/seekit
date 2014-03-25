@@ -1,12 +1,24 @@
-<h1>Users</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading text-center">
+	<span class="h1">Users</span>
+  </div>
 
-<% @users.each do |user| %>
-	<%= link_to user_path(user) do  %>
-	<div class="user">
-		<img src="<%= user.imageURL %>" class="thumb"  />
-		Name: <%= user.name %><br />
-		Email: <%= user.email %><br />
-		XP: <%= user.exp %>
-	</div>
-	<% end %>
-<% end %>
+  <table class="table table-striped table-hover">
+	<thead>
+	  <tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Experience</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @users.each do |user| %>
+	  <tr data-link="<%= user_path(user) %>">
+		<td><%= user.name %></td>
+		<td><%= user.email %></td>
+		<td><%= user.exp %></td>
+	  </tr>
+	  <% end %>
+	</tbody>
+  </table>
+</div>

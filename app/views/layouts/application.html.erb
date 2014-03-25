@@ -7,7 +7,7 @@
 
 	<!-- Bootstrap -->
 	<%= stylesheet_link_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", media: "all" %>
-	<%= javascript_include_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js", media: "all" %>
+	<%= javascript_include_tag "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" %>
 
 	<%= csrf_meta_tags %>
 
@@ -28,7 +28,9 @@
 		  <% end %>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
-		  <p class="navbar-text navbar-right">Signed in as Guest</p>
+		  <p class="navbar-text navbar-right">
+			Signed in as Guest
+		  </p>
 		  <ul class="nav navbar-nav navbar-left">
 			<li class="<%= params[:controller] == "users" ? "active" : "" %>">
 			  <a href="/users">Users</a>

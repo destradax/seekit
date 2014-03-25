@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$("tr[data-link]").click(function() {
+		window.location = $(this).data("link");
+	});
+}); 
