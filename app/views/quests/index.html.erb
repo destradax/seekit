@@ -1,16 +1,30 @@
-<h1>Quests</h1>
+<div class="panel panel-primary">
+  <div class="panel-heading text-center">
+	<span class="h1">Quests</span>
+  </div>
 
-<% @quests.each do |quest| %>
-	<%= link_to quest_path(quest) do %>
-		<div class="quest">
-			Name: <%= quest.name %><br />
-			Hint: <%= quest.hint %><br />
-			Difficulty: <%= quest.difficulty %>
-		</div>
-	<% end %>
-<% end %>
-
-<br />
-<div class="new">
-	<%= link_to 'New Quest', new_quest_path %>
+  <table class="table table-striped table-hover">
+	<thead>
+	  <tr>
+		<th>Name</th>
+		<th>Hint</th>
+		<th>Difficulty</th>
+		<th>Latitude</th>
+		<th>Longitude</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <% @quests.each do |quest| %>
+	  <tr data-link="<%= quest_path(quest) %>">
+		<td><%= quest.name %></td>
+		<td><%= quest.hint %></td>
+		<td><%= quest.difficulty %></td>
+		<td><%= quest.latitude %></td>
+		<td><%= quest.longitude %></td>
+	  </tr>
+	  <% end %>
+	</tbody>
+  </table>
 </div>
+
+<%= link_to "New Quest", new_quest_path, class: "btn btn-primary" %>
