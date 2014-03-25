@@ -1,12 +1,27 @@
-<p id="notice"><%= notice %></p>
-<p id="error"><%= flash[:error] %></p>
+<% if notice %>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			&times;
+		</button>
+		<%= notice %>
+	</div>
+<% end -%>
+
+<% if flash[:error] %>
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+			&times;
+		</button>
+		<%= flash[:error] %>s
+	</div>
+<% end -%>
+
 <h1><%= @user.name %></h1>
 
 <% if @user.imageURL=="" || @user.imageURL.nil? %>
-	You don't have a profile pic :(<br /><br />
+	<%= image_tag "default_pic.png", class: "img-thumbnail" %>
 <% else %>
-	Profile pic:<br />
-	<img src="<%= @user.imageURL %>" class="profilepic"/><br />
+	<%= image_tag @user.imageURL, class: "img-thumbnail" %>
 <% end %>
 
 <%= render partial: 'form'%>
@@ -17,11 +32,13 @@
 <h2><%= @user.name %>'s Friends</h2>
 <% @user.friends.each do |friend| %>
 	<%= link_to user_path(friend) do  %>
-	<div class="user">
-		<img src="<%= friend.imageURL %>" class="thumb"  />
-		Name: <%= friend.name %><br />
-		Email: <%= friend.email %><br />
-		XP: <%= friend.exp %>
-	</div>
+		<div class="user">
+			<img src="<%= friend.imageURL %>" class="thumb"  />
+			Name: <%= friend.name %>
+			<br />
+			Email: <%= friend.email %>
+			<br />
+			XP: <%= friend.exp %>
+		</div>
 	<% end %>
 <% end %>
