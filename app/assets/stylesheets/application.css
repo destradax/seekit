@@ -11,10 +11,6 @@
  *= require_self
  *= require_tree .
  */
-input[type=text], input[type=number], textarea {
-	border-radius: 5px;
-}
-
 section{
 	display: block;
 	overflow: hidden;
@@ -31,35 +27,4 @@ footer{
 
 tr[data-link]{
 	cursor: pointer;
-}
-
-#notice{
-	color: green;
-}
-#error{
-	color: red;
-}
-
-div.delete{
-	background-color: #c00;
-	float: right;
-	padding: 5px;
-	border-radius: 5px;
-}
-
-div.delete a{
-	text-decoration: none;
-	color: white;
-}
-
-div.new{
-	background-color: #0c0;
-	float: right;
-	padding: 5px;
-	border-radius: 5px;
-}
-
-div.new a{
-	text-decoration: none;
-	color: white;
 }

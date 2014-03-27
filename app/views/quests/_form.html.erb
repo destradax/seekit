@@ -1,68 +1,96 @@
-<%= form_for(@quest) do |f| %>
-  <% if @quest.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@quest.errors.count, "error") %> prohibited this user from being saved:</h2>
+<%= form_for @quest, html: { role: "form", class: "form-horizontal"} do |f| %>
 
-      <ul>
-      <% @quest.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<% if @quest.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@quest.errors.count, "error") %> prohibited this user from being saved:</h2>
+		
+			<ul>
+				<% @quest.errors.full_messages.each do |msg| %>
+					<li>
+						<%= msg %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	
-	<div class="field">
-		ID: <%= @quest.id %>
+	<br />
+	<div class="form-group">
+		<%= f.label :name, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_field :name, class: "form-control" %>
+		</div>
 	</div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :hint %><br>
-    <%= f.text_field :hint, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :difficulty %><br>
-    <%= f.number_field :difficulty, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude, class: "inputfield" %>
-  </div>
-  <div class="field">
-  <div class="field">
-    <%= f.label :brief %><br>
-    <%= f.text_area :brief, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :place_name %><br>
-    <%= f.text_field :place_name, class: "inputfield" %>
-  </div>
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :fun_facts %><br>
-    <%= f.text_area :fun_facts, class: "inputfield" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
+	<div class="form-group">
+		<%= f.label :hint, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_field :hint, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :difficulty, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.radio_button :difficulty, "1" %>
+			<%= f.label :difficulty, "1", value: "1" %>
+			<%= f.radio_button :difficulty, "2" %>
+			<%= f.label :difficulty, "2", value: "2" %>
+			<%= f.radio_button :difficulty, "3" %>
+			<%= f.label :difficulty, "3", value: "3" %>
+			<%= f.radio_button :difficulty, "4" %>
+			<%= f.label :difficulty, "4", value: "4" %>
+			<%= f.radio_button :difficulty, "5" %>
+			<%= f.label :difficulty, "5", value: "5" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :latitude, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_field :latitude, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :longitude, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_field :longitude, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :brief, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_area :brief, rows: 3, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :place_name, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_field :place_name, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :phone, class: "col-md-1 control-label" %>
+		<div class="col-md-2">
+			<%= f.text_field :phone, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-group">
+		<%= f.label :fun_facts, class: "col-md-1 control-label" %>
+		<div class="col-md-4">
+			<%= f.text_area :fun_facts, rows: 3, class: "form-control" %>
+		</div>
+	</div>
+	<div class="actions">
+		<%= f.submit class: "btn btn-success" %>
+	</div>
+	
 	<% unless @quest.id.nil? %>
 		<hr />
 		<h2>Images</h2>
 		<%= f.fields_for :images do |builder| %>
 			<%= render "images_fields", f: builder %>
 		<% end %>
-
+		
 		<div class="delete">
 			<%= link_to 'Delete Quest', @quest, method: :delete, data: {confirm: "Are you sure?"} %>
 		</div>
-	<% end  %>
+	<% end %>
 <% end %>
