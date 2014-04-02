@@ -11,17 +11,31 @@
  *= require_self
  *= require_tree .
  */
+html{
+	position: relative;
+	min-height: 100%;
+}
+
+body{
+	background: white url("background.png");
+	margin-bottom: 60px;
+}
+
 section{
 	display: block;
-	overflow: hidden;
+	padding-bottom: 60px;
+	margin-bottom: 0px;
 }
 
 footer{
+	background: #f8f8f8 url("footer_top.png") left top;
+	background-repeat: repeat-x;
 	text-align: center;
-	color: #fff;
-	background-color: rgb(1, 174, 240);
-	border-radius: 5px;
-	margin-top: 15px;
+	padding-top: 13px;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 60px;
 	display: block;
 }
 
