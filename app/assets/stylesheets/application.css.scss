@@ -17,7 +17,7 @@ html{
 }
 
 body{
-	background: white url("background.png");
+	background: white image-url("background.png");
 	margin-bottom: 60px;
 }
 
@@ -28,7 +28,7 @@ section{
 }
 
 footer{
-	background: #f8f8f8 url("footer_top.png") left top;
+	background: #f8f8f8 image-url("footer_top.png") left top;
 	background-repeat: repeat-x;
 	text-align: center;
 	padding-top: 13px;
