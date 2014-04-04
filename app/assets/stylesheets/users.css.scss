@@ -1,30 +1,12 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.thumb{
-	height: 100px;
-	margin-right: auto;
-	margin-left: auto;
-	display: block;
+#profile-pic{
+  .img-thumbnail{
+    width: 100%;
+  }
 }
 
-div.user{
-	text-align: center;
-	text-decoration: none;
-	color: #000;
-	border: 1px solid black;
-	border-radius: 10px;
-	padding: 5px 5px 5px 5px;
-	margin-top: 10px;
-	margin-left: 10px;
-	float: left;
-}
-div.user:hover{
-	background-color: rgb(1, 174, 240);
-	border: 1px solid rgb(1, 174, 240);
-	color: #fff;
-}
-
-.inputfield{
-	margin-left: 10px;
+.actions{
+  text-align: right;
 }

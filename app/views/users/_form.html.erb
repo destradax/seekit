@@ -1,40 +1,55 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: "inputfield" %>
-  </div>
-  <div class="field">
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :facebookId %><br>
-    <%= f.text_field :facebookId, class: "inputfield" %>
-  </div>
-    <%= f.label :imageURL %><br>
-    <%= f.text_field :imageURL, class: "inputfield" %>
-  </div>
-  <div class="field">
-    <%= f.label :exp %><br>
-    <%= f.text_field :exp, class: "inputfield" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-	<div class="delete">
-		<%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= form_for @user, html: {class: "form-horizontal", role: "form"} do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+			
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	
+	<div class="form-group">
+		<%= f.label :name, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
+			<%= f.text_field :name, class: "form-control" %>
+		</div>
 	</div>
+	
+	<div class="form-group">
+		<%= f.label :email, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
+			<%= f.text_field :email, class: "form-control" %>
+		</div >
+	</div>
+	
+	<div class="form-group">
+		<%= f.label :facebookId, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
+			<%= f.text_field :facebookId, class: "form-control" %>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<%= f.label :imageURL, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
+			<%= f.text_field :imageURL, class: "form-control" %>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<%= f.label :exp, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
+			<%= f.text_field :exp, class: "form-control" %>
+		</div>
+	</div>
+	
+	<div class="actions">
+		<%= f.submit class: "btn btn-success" %>
+	</div>
+
 <% end %>

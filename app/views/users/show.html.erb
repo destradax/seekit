@@ -1,37 +1,52 @@
 <% if notice %>
-	<div class="alert alert-success">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-			&times;
-		</button>
-		<%= notice %>
+	<div class="container">
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				&times;
+			</button>
+			<%= notice %>
+		</div>
 	</div>
 <% end -%>
 
 <% if flash[:error] %>
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-			&times;
-		</button>
-		<%= flash[:error] %>
+	<div class="container">
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				&times;
+			</button>
+			<%= flash[:error] %>
+		</div>
 	</div>
 <% end -%>
 
-<h1><%= @user.name %></h1>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div id="profile-pic">
+				<%= user_profile_pic(@user) %>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2><%= @user.name %></h2>
+				</div>
+				<div class="panel-body">
+					<%= render partial: 'form'%>
+				</div>
+			</div>
+			<div class="actions">
+				<%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			</div>
+		</div>
+	</div>
+</div>
 
-<% if @user.imageURL=="" || @user.imageURL.nil? %>
-	<%= image_tag "default_pic.png", class: "img-thumbnail" %>
-<% else %>
-	<%= image_tag @user.imageURL, class: "img-thumbnail" %>
-<% end %>
-
-<%= render partial: 'form'%>
-
-<br />
-<%= link_to '<< Back', users_path %>
-<hr />
-<h2><%= @user.name %>'s Friends</h2>
-<% @user.friends.each do |friend| %>
-	<%= link_to user_path(friend) do  %>
+<% if @user.friends.any? %>
+	<h2><%= @user.name %>'s Friends</h2>
+	<% @user.friends.each do |friend| %>
+		<%= link_to user_path(friend) do  %>
 		<div class="user">
 			<img src="<%= friend.imageURL %>" class="thumb"  />
 			Name: <%= friend.name %>
@@ -40,5 +55,12 @@
 			<br />
 			XP: <%= friend.exp %>
 		</div>
+		<% end %>
 	<% end %>
 <% end %>
+
+<br />
+<br />
+<div class="container">
+	<%= link_to '<< Back', users_path, class: "btn btn-primary" %>
+</div>
