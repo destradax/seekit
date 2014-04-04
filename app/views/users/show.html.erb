@@ -1,26 +1,23 @@
-<% if notice %>
-	<div class="container">
+<div class="container">
+	<% if notice %>
 		<div class="alert alert-success">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 				&times;
 			</button>
 			<%= notice %>
 		</div>
-	</div>
-<% end -%>
-
-<% if flash[:error] %>
-	<div class="container">
+	<% end -%>
+	
+	<% if flash[:error] %>
 		<div class="alert alert-danger">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 				&times;
 			</button>
 			<%= flash[:error] %>
 		</div>
-	</div>
-<% end -%>
+	<% end -%>
 
-<div class="container">
+
 	<div class="row">
 		<div class="col-md-6">
 			<div id="profile-pic">
@@ -30,7 +27,7 @@
 		<div class="col-md-6">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<h2><%= @user.name %></h2>
+					<span class="h2"><%= @user.name %></span>
 				</div>
 				<div class="panel-body">
 					<%= render partial: 'form'%>
@@ -41,26 +38,38 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-<% if @user.friends.any? %>
-	<h2><%= @user.name %>'s Friends</h2>
-	<% @user.friends.each do |friend| %>
-		<%= link_to user_path(friend) do  %>
-		<div class="user">
-			<img src="<%= friend.imageURL %>" class="thumb"  />
-			Name: <%= friend.name %>
-			<br />
-			Email: <%= friend.email %>
-			<br />
-			XP: <%= friend.exp %>
+	<% if @user.friends.any? %>
+		<br />
+		<br />
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center">
+				<span class="h2"><%= @user.name %>'s Friends</span>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Experience</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @user.friends.each do |friend| %>
+							<tr data-link="<%= user_path(friend) %>">
+								<td><%= friend.name %></td>
+								<td><%= friend.email %></td>
+								<td><%= friend.exp %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<% end %>
 	<% end %>
-<% end %>
 
-<br />
-<br />
-<div class="container">
+	<br />
+	<br />
 	<%= link_to '<< Back', users_path, class: "btn btn-primary" %>
 </div>
