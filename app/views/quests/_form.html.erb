@@ -16,20 +16,20 @@
 	
 	<br />
 	<div class="form-group">
-		<%= f.label :name, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :name, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :name, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :hint, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :hint, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :hint, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :difficulty, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :difficulty, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.radio_button :difficulty, "1" %>
 			<%= f.label :difficulty, "1", value: "1" %>
 			<%= f.radio_button :difficulty, "2" %>
@@ -43,38 +43,38 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :latitude, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :latitude, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :latitude, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :longitude, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :longitude, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :longitude, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :brief, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :brief, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_area :brief, rows: 3, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :place_name, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :place_name, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :place_name, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :phone, class: "col-md-1 control-label" %>
-		<div class="col-md-2">
+		<%= f.label :phone, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_field :phone, class: "form-control" %>
 		</div>
 	</div>
 	<div class="form-group">
-		<%= f.label :fun_facts, class: "col-md-1 control-label" %>
-		<div class="col-md-4">
+		<%= f.label :fun_facts, class: "col-md-2 control-label" %>
+		<div class="col-md-10">
 			<%= f.text_area :fun_facts, rows: 3, class: "form-control" %>
 		</div>
 	</div>
@@ -88,7 +88,7 @@
 		<% end %>
 	<% end %>
 
-	<br />
-	
-	<%= f.submit class: "btn btn-success" %>
+	<div class="actions">	
+		<%= f.submit class: "btn btn-success" %>
+	</div>
 <% end %>

@@ -1,38 +1,44 @@
-<% if notice %>
-	<div class="alert alert-success">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-			&times;
-		</button>
-		<%= notice %>
+<div class="container">
+	<% if notice %>
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				&times;
+			</button>
+			<%= notice %>
+		</div>
+	<% end -%>
+
+	<% if flash[:error] %>
+		<div class="alert alert-danger">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+				&times;
+			</button>
+			<%= flash[:error] %>
+		</div>
+	<% end -%>
+
+	<div class="row tex-center">
+		<div class="col-md-12">
+			<%= quest_pics @quest %>
+		</div>
 	</div>
-<% end -%>
 
-<% if flash[:error] %>
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-			&times;
-		</button>
-		<%= flash[:error] %>
+	<br />
+
+	<div class="panel panel-primary">
+			<div class="panel-heading"">
+				<span class="h2"><%= @quest.name %></span>
+			</div>
+			<div class="panel-body">
+				<%= render partial: 'form'%>
+			</div>
 	</div>
-<% end -%>
 
+	<div class="actions">
+		<%= link_to 'Delete Quest', @quest, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+	</div>
 
-<div class="page-header text-center">
-	<h1><%= @quest.name %></h1>
+	<br />
+	<br />
+	<%= link_to '<< Back', quests_path, class: "btn btn-primary" %>
 </div>
-
-<% if @quest.images.count == 0 %>
-	<%= image_tag "default_pic.png", class: "img-thumbnail img-responsive" %>
-<% else %>
-	<% @quest.images.each do |image| %>
-		<img src="<%= image.url %>" class="img-thumbnail"/>
-	<% end %>
-<% end %>
-
-<%= render partial: 'form'%>
-
-<br />
-<%= link_to 'Delete Quest', @quest, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-<br />
-<br />
-<%= link_to '<< Back', quests_path, class: "btn btn-primary" %>
