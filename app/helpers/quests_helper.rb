@@ -10,7 +10,7 @@ module QuestsHelper
 				end
 			end
 		else
-			pics += image_tag "default_pic.png", class: "img-thumbnail img-responsive"
+			pics += image_tag "default_pic.png", class: "img-thumbnail"
 		end
 
 		pics.html_safe

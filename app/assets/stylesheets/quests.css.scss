@@ -1,29 +1,15 @@
 // Place all the styles related to the quests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.questpic{
-	max-height: 200px;
-	margin-left: 15px;;
-	display: inline;
-}
 
-a{
-	text-decoration: none;
-}
-div.quest{
-	text-decoration: none;
-	color: #000;
-	border: 1px solid black;
-	border-radius: 10px;
-	padding: 5px 5px 5px 5px;
-	margin-top: 15px;
-}
-div.quest:hover{
-	background-color: rgb(1, 174, 240);
-	border: 1px solid rgb(1, 174, 240);
-	color: #fff;
-}
-
-.inputfield{
-	margin-left: 10px;
+.pic-gallery{
+  height: 200px;
+  overflow: scroll;
+  white-space: nowrap;
+  
+  img{
+    display: inline;
+    height: 100%;
+    margin-right: 10px;
+  }
 }
