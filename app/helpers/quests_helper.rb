@@ -6,7 +6,9 @@ module QuestsHelper
 		if @quest.images.any?
 			@quest.images.each do |image|
 				if image.url
+					pics += "<a href='" + image.url + "' data-lightbox='quest-pics'>"
 					pics += image_tag image.url, class: "img-thumbnail"
+					pics += "</a>"
 				end
 			end
 		else
