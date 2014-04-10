@@ -20,4 +20,12 @@ function initialize() {
 
 $(document).ready(function() {
 	initialize();
+
+	$('.pic-gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		gallery: {
+			enabled: true
+		}
+	});
 });
