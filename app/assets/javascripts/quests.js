@@ -19,7 +19,11 @@ function initialize() {
 
 
 $(document).ready(function() {
-	initialize();
+
+	// Check if a google maps canvas exists and initialize it
+	if ($("#map-canvas").length != 0) {
+		initialize();
+	}
 
 	$('.pic-gallery').magnificPopup({
 		delegate: 'a',
